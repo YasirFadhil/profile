@@ -8,106 +8,106 @@ const photos = [
     {
         id: 1,
         url: "/photos/photo1.webp",
-        alt: "Urban Architecture",
+        alt: "Interior Architecture",
         category: "architecture",
-        title: "City Lines",
-        description: "Modern architectural geometry captured in natural light"
+        title: "Stairway Light",
+        description: "Interior architectural perspective featuring stairs, railings, and natural light streaming through an opening"
     },
     {
         id: 2,
         url: "/photos/photo2.webp",
-        alt: "Street Scene",
-        category: "street",
-        title: "Daily Life",
-        description: "Candid moments of everyday street photography"
+        alt: "Sunset Landscape",
+        category: "landscape",
+        title: "Golden Sunset",
+        description: "Dramatic sunset with warm orange-pink sky and silhouetted tropical vegetation creating a serene evening scene"
     },
     {
         id: 3,
         url: "/photos/photo3.webp",
-        alt: "Nature Close-up",
+        alt: "Grass and Sky",
         category: "nature",
-        title: "Natural Details",
-        description: "The beauty found in nature's intricate patterns"
+        title: "Ground Level View",
+        description: "Close-up perspective of lush green grass with architectural structures blurred in the background under a moody sky"
     },
     {
         id: 4,
         url: "/photos/photo4.webp",
-        alt: "Landscape View",
-        category: "landscape",
-        title: "Wide Horizons",
-        description: "Expansive views showcasing natural landscapes"
+        alt: "Mosque Interior",
+        category: "architecture",
+        title: "Sacred Architecture",
+        description: "Beautiful interior of a mosque featuring ornate Islamic decorations, golden details, intricate patterns, and a person in prayer on traditional carpets"
     },
     {
         id: 5,
         url: "/photos/photo5.webp",
-        alt: "Urban Photography",
-        category: "street",
-        title: "City Vibes",
-        description: "Capturing the energy and rhythm of urban life"
+        alt: "Butterfly in Foliage",
+        category: "nature",
+        title: "Garden Discovery",
+        description: "A delicate butterfly resting among lush green leaves, showcasing the intricate beauty of nature's small wonders"
     },
     {
         id: 6,
         url: "/photos/photo6.webp",
-        alt: "Portrait Style",
-        category: "portrait",
-        title: "Human Moments",
-        description: "Personal expressions and emotional captures"
+        alt: "Sunset Water Reflection",
+        category: "landscape",
+        title: "Storm's Reflection",
+        description: "Spectacular sunset perfectly reflected in a small water pool formed after a storm, with dramatic sky colors mirrored in the still water and framed by silhouetted trees"
     },
     {
         id: 7,
         url: "/photos/photo7.webp",
-        alt: "Architecture Details",
-        category: "architecture",
-        title: "Structural Beauty",
-        description: "Focusing on architectural details and textures"
+        alt: "Seascape at Golden Hour",
+        category: "landscape",
+        title: "Fishing Fleet Sunset",
+        description: "Golden hour seascape with traditional fishing boats scattered across calm waters, capturing the peaceful end of a working day at sea"
     },
     {
         id: 8,
         url: "/photos/photo8.webp",
-        alt: "Street Art",
-        category: "street",
-        title: "Urban Canvas",
-        description: "Creative expressions found on city walls"
+        alt: "Framed Sunset Seascape",
+        category: "landscape",
+        title: "Natural Window",
+        description: "Sunset over the ocean beautifully framed by silhouetted tree branches and foliage, creating a natural window to the golden seascape"
     },
     {
         id: 9,
         url: "/photos/photo9.webp",
-        alt: "Natural Light",
-        category: "nature",
-        title: "Golden Moments",
-        description: "Playing with natural light and shadows"
+        alt: "Rice Field at Golden Hour",
+        category: "landscape",
+        title: "Golden Harvest",
+        description: "Dramatic sunset over lush green rice fields with spectacular orange-pink sky and clouds creating a breathtaking rural landscape"
     },
     {
         id: 10,
         url: "/photos/photo10.webp",
-        alt: "Evening Scene",
-        category: "landscape",
-        title: "Twilight Views",
-        description: "Capturing the magic of evening light"
+        alt: "Twilight Silhouette",
+        category: "nature",
+        title: "Evening Branches",
+        description: "Bare tree branches silhouetted against a dusky twilight sky with power lines creating geometric patterns in the fading light"
     },
     {
         id: 11,
         url: "/photos/photo11.webp",
-        alt: "Morning Light",
+        alt: "Pink Flower Close-up",
         category: "nature",
-        title: "Dawn Capture",
-        description: "Early morning photography with soft lighting"
+        title: "Delicate Bloom",
+        description: "A beautiful pink flower captured in intimate detail, showcasing nature's delicate beauty with soft focus background"
     },
     {
         id: 12,
         url: "/photos/photo12.webp",
-        alt: "Urban Details",
-        category: "street",
-        title: "City Textures",
-        description: "Finding beauty in urban environments"
+        alt: "Red Garden Flower",
+        category: "nature",
+        title: "Vibrant Bloom",
+        description: "A striking red flower captured in a lush garden setting, showcasing vibrant petals with beautiful natural lighting and bokeh background"
     },
     {
         id: 13,
         url: "/photos/photo13.webp",
-        alt: "Scenic Landscape",
-        category: "landscape",
-        title: "Natural Vista",
-        description: "Breathtaking landscape photography"
+        alt: "Illuminated Monument at Night",
+        category: "architecture",
+        title: "Tugu Yogyakarta",
+        description: "Historic Tugu Yogyakarta monument beautifully illuminated at night, showcasing traditional Javanese architecture with dramatic nighttime lighting and urban surroundings"
     }
 ];
 
@@ -292,7 +292,7 @@ const categories = ["all", "street", "nature", "portrait", "architecture", "land
 
                 // Close mobile menu when clicking outside
                 document.addEventListener('click', function(event) {
-                    const target = event.target;
+                    const target = event.target as Node;
                     if (!mobileMenuBtn.contains(target) && !mobileMenu.contains(target)) {
                         mobileMenu.classList.add('hidden');
                         const icon = mobileMenuBtn.querySelector('i');
@@ -307,24 +307,26 @@ const categories = ["all", "street", "nature", "portrait", "architecture", "land
             const noPhotosMsg = document.getElementById('no-photos');
 
             filterBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const filter = this.getAttribute('data-filter');
+                const filterBtn = btn as HTMLButtonElement;
+                filterBtn.addEventListener('click', function() {
+                    const filter = filterBtn.getAttribute('data-filter');
 
                     // Update active button
                     filterBtns.forEach(b => {
                         b.className = b.className.replace(/bg-gradient-to-r from-blue-500 to-violet-500 text-white border-transparent/, 'border-slate-600 text-slate-300 hover:border-blue-400 hover:text-blue-400');
                     });
-                    this.className = this.className.replace(/border-slate-600 text-slate-300 hover:border-blue-400 hover:text-blue-400/, 'bg-gradient-to-r from-blue-500 to-violet-500 text-white border-transparent');
+                    filterBtn.className = filterBtn.className.replace(/border-slate-600 text-slate-300 hover:border-blue-400 hover:text-blue-400/, 'bg-gradient-to-r from-blue-500 to-violet-500 text-white border-transparent');
 
                     // Filter photos
                     let visibleCount = 0;
                     photoItems.forEach(item => {
-                        const category = item.getAttribute('data-category');
+                        const htmlItem = item as HTMLElement;
+                        const category = htmlItem.getAttribute('data-category');
                         if (filter === 'all' || category === filter) {
-                            item.style.display = 'block';
+                            htmlItem.style.display = 'block';
                             visibleCount++;
                         } else {
-                            item.style.display = 'none';
+                            htmlItem.style.display = 'none';
                         }
                     });
 
@@ -341,7 +343,7 @@ const categories = ["all", "street", "nature", "portrait", "architecture", "land
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
+                        (entry.target as HTMLElement).style.opacity = '1';
                     }
                 });
             }, { threshold: 0.1 });
