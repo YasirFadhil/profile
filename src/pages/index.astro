@@ -35,6 +35,11 @@ const skills = ["Vibe Coding", "Phone Photography", "Word/Canva"];
                             >About</a
                         >
                         <a
+                            href="/gallery"
+                            class="text-slate-300 hover:text-blue-400 transition-colors"
+                            >Gallery</a
+                        >
+                        <a
                             href="#projects"
                             class="text-slate-300 hover:text-blue-400 transition-colors"
                             >Projects</a
@@ -70,6 +75,11 @@ const skills = ["Vibe Coding", "Phone Photography", "Word/Canva"];
                             href="#about"
                             class="block text-slate-300 hover:text-blue-400 transition-colors mobile-nav-link"
                             >About</a
+                        >
+                        <a
+                            href="/gallery"
+                            class="block text-slate-300 hover:text-blue-400 transition-colors mobile-nav-link"
+                            >Gallery</a
                         >
                         <a
                             href="#projects"
@@ -229,20 +239,20 @@ const skills = ["Vibe Coding", "Phone Photography", "Word/Canva"];
                                 <h3
                                     class="text-xl font-semibold text-slate-200"
                                 >
-                                    Personal Portfolio
+                                    Health Website
                                 </h3>
                                 <i
                                     class="fas fa-laptop-code text-blue-400 text-xl"
                                 ></i>
                             </div>
                             <p class="text-slate-400 text-sm mb-4">
-                                Modern portfolio website built with Astro and
-                                Tailwind CSS
+                                Website for a health information about
+                                nutrition.
                             </p>
                             <div class="flex flex-wrap gap-2 mb-4">
                                 <span
                                     class="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full"
-                                    >Astro</span
+                                    >HTML</span
                                 >
                                 <span
                                     class="px-2 py-1 bg-violet-500/20 text-violet-300 text-xs rounded-full"
@@ -255,7 +265,7 @@ const skills = ["Vibe Coding", "Phone Photography", "Word/Canva"];
                             </div>
                             <div class="flex gap-3">
                                 <a
-                                    href="https://yasirfadhil.vercel.app"
+                                    href="https://4sehat5sempurna.vercel.app"
                                     target="_blank"
                                     class="text-blue-400 hover:text-blue-300 transition-colors"
                                 >
@@ -300,9 +310,12 @@ const skills = ["Vibe Coding", "Phone Photography", "Word/Canva"];
                                 >
                             </div>
                             <div class="flex gap-3">
-                                <span class="text-slate-500 text-sm"
-                                    >Coming Soon</span
+                                <a
+                                    href="/gallery"
+                                    class="text-blue-400 hover:text-blue-300 transition-colors"
                                 >
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -526,45 +539,61 @@ const skills = ["Vibe Coding", "Phone Photography", "Word/Canva"];
                     </div>
 
                     <!-- Social Media Links -->
-                    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-                        <a
-                            href="mailto:yasir@example.com"
-                            class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-blue-400/50 transition-all duration-300 hover:scale-105"
-                        >
-                            <div class="text-2xl mb-2">
-                                <i class="fas fa-envelope text-blue-400"></i>
-                            </div>
-                            <span
-                                class="text-slate-300 group-hover:text-blue-400 transition-colors"
-                                >Email</span
-                            >
-                        </a>
+                    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-12">
                         <a
                             href="https://instagram.com/yasirfadhil"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-violet-400/50 transition-all duration-300 hover:scale-105"
+                            class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-pink-400/50 transition-all duration-300 hover:scale-105"
                         >
                             <div class="text-2xl mb-2">
-                                <i class="fab fa-instagram text-violet-400"></i>
+                                <i class="fab fa-instagram text-pink-400"></i>
                             </div>
                             <span
-                                class="text-slate-300 group-hover:text-violet-400 transition-colors"
+                                class="text-slate-300 group-hover:text-pink-400 transition-colors"
                                 >Instagram</span
                             >
                         </a>
                         <a
-                            href="https://linkedin.com/in/yasirfadhil"
+                            href="https://x.com/yasirfadhil"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-cyan-400/50 transition-all duration-300 hover:scale-105"
+                            class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-blue-400/50 transition-all duration-300 hover:scale-105"
                         >
                             <div class="text-2xl mb-2">
-                                <i class="fab fa-linkedin text-cyan-400"></i>
+                                <i class="fab fa-x-twitter text-blue-400"></i>
                             </div>
                             <span
-                                class="text-slate-300 group-hover:text-cyan-400 transition-colors"
-                                >LinkedIn</span
+                                class="text-slate-300 group-hover:text-blue-400 transition-colors"
+                                >X</span
+                            >
+                        </a>
+                        <a
+                            href="https://tiktok.com/@yasirfadhil"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-red-400/50 transition-all duration-300 hover:scale-105"
+                        >
+                            <div class="text-2xl mb-2">
+                                <i class="fab fa-tiktok text-red-400"></i>
+                            </div>
+                            <span
+                                class="text-slate-300 group-hover:text-red-400 transition-colors"
+                                >TikTok</span
+                            >
+                        </a>
+                        <a
+                            href="https://reddit.com/u/yasirfadhil"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-orange-400/50 transition-all duration-300 hover:scale-105"
+                        >
+                            <div class="text-2xl mb-2">
+                                <i class="fab fa-reddit text-orange-400"></i>
+                            </div>
+                            <span
+                                class="text-slate-300 group-hover:text-orange-400 transition-colors"
+                                >Reddit</span
                             >
                         </a>
                         <a
