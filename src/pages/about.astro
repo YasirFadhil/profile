@@ -1,0 +1,216 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/Navigation.astro";
+
+const name = "Muchammad Yassir Nur Fadillah";
+const title = "About Me";
+const description =
+    "A passionate student with a love for learning and exploring technology.";
+const image = "../../public/images/profile.jpg";
+const keywords = ["student", "passion", "technology", "programming"];
+const social = {
+    github: "https://github.com/YasirFadhil",
+    x: "https://twitter.com/ysirnf_",
+    instagram: "https://www.instagram.com/ysirnf_/",
+};
+const email = "yasirfadhil46@gmail.com";
+const location = "Klaten, Indonesia";
+
+// These variables are used in the main content of about.astro
+const age = 19; // Assuming an age for demonstration
+const major = "Network Engineering"; // Assuming a major
+const school = "1st State Vocational High School Klaten"; // Assuming a school
+const passion = ["web development", "photography", "gaming"];
+const hobbies = [
+    {
+        name: "Taking Photos",
+        icon: "fa-camera-retro",
+        description: "Capturing life moments",
+        color: "text-green-400",
+    },
+    {
+        name: "Listening to Music",
+        icon: "fa-music",
+        description: "Finding rhythm",
+        color: "text-purple-400",
+    },
+    {
+        name: "Gaming",
+        icon: "fa-gamepad",
+        description: "Interactive entertainment",
+        color: "text-red-400",
+    },
+];
+const skills = ["HTML", "CSS", "Astro", "Python", "NixOS"]; // Assuming skills for display
+
+const aboutData = {
+    name: name,
+    title: title,
+    description: description,
+    image: image,
+    keywords: keywords,
+    social: social,
+    email: email,
+    location: location,
+    age: age,
+    major: major,
+    school: school,
+    passion: passion,
+    hobbies: hobbies,
+    skills: skills,
+};
+---
+
+<Layout {...aboutData}>
+    <Navigation />
+    <div
+        class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-20"
+    >
+        <div class="container mx-auto px-6 py-16">
+            <h1
+                class="text-4xl md:text-5xl font-bold mb-8 text-center bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent"
+            >
+                {title}
+            </h1>
+
+            <div
+                class="max-w-4xl mx-auto bg-slate-800/70 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 shadow-lg"
+            >
+                <div class="text-center mb-10">
+                    <img
+                        src={image}
+                        alt={name}
+                        class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-blue-400 object-cover"
+                    />
+                    <h2 class="text-3xl font-semibold text-slate-200 mb-2">
+                        {name}
+                    </h2>
+                    <p class="text-blue-300 text-lg">
+                        {major} Student at {school}
+                    </p>
+                </div>
+
+                <div class="mb-10">
+                    <h3
+                        class="text-2xl font-semibold text-slate-200 mb-4 border-b border-slate-700/50 pb-2"
+                    >
+                        About Me
+                    </h3>
+                    <p class="text-slate-300 text-lg mb-4 leading-relaxed">
+                        My name is {name}, and I'm currently {age} years old. I'm
+                        studying at {school}, majoring in {major}, where I'm
+                        developing my technical skills and passion for
+                        technology.
+                    </p>
+                    <p class="text-slate-300 text-lg leading-relaxed">
+                        I'm passionate about {passion.join(", ")}, and I love
+                        exploring new technologies and creating things that make
+                        a difference.
+                    </p>
+                </div>
+
+                <div class="mb-10">
+                    <h3
+                        class="text-2xl font-semibold text-slate-200 mb-6 border-b border-slate-700/50 pb-2 text-center"
+                    >
+                        My Hobbies
+                    </h3>
+                    <div
+                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                    >
+                        {
+                            hobbies.map((hobby) => (
+                                <div class="bg-slate-900/50 border border-slate-700/50 p-6 rounded-xl text-center hover:border-blue-400/50 hover:bg-slate-700/50 transition-all duration-300">
+                                    <div class="mb-3">
+                                        <i
+                                            class={`fas ${hobby.icon} ${hobby.color} text-3xl`}
+                                        />
+                                    </div>
+                                    <span class="text-slate-200 font-medium block text-lg">
+                                        {hobby.name}
+                                    </span>
+                                    <p class="text-slate-400 text-sm mt-1">
+                                        {hobby.description}
+                                    </p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto mb-16">
+                    <h3
+                        class="text-xl font-semibold text-slate-300 mb-6 text-center"
+                    >
+                        My Skills
+                    </h3>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        {
+                            skills.map((skill) => (
+                                <span class="px-4 py-2 bg-blue-500/20 text-blue-300 text-sm rounded-full">
+                                    {skill}
+                                </span>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <h3
+                        class="text-2xl font-semibold text-slate-200 mb-4 border-b border-slate-700/50 pb-2"
+                    >
+                        Connect with Me
+                    </h3>
+                    <div class="social-icons flex justify-center gap-6 mb-6">
+                        {
+                            social.github && (
+                                <a
+                                    href={social.github}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-slate-300 hover:text-blue-400 transition-colors text-4xl"
+                                >
+                                    <i class="fab fa-github" />
+                                </a>
+                            )
+                        }
+                        {
+                            social.x && (
+                                <a
+                                    href={social.x}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-slate-300 hover:text-blue-400 transition-colors text-4xl"
+                                >
+                                    <i class="fab fa-x-twitter" />
+                                </a>
+                            )
+                        }
+                        {
+                            social.instagram && (
+                                <a
+                                    href={social.instagram}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-slate-300 hover:text-pink-400 transition-colors text-4xl"
+                                >
+                                    <i class="fab fa-instagram" />
+                                </a>
+                            )
+                        }
+                    </div>
+                    <div class="contact-info text-slate-300">
+                        <p class="text-lg">
+                            Email:{" "}
+                            <a
+                                href={`mailto:${email}`}
+                                class="text-blue-400 hover:underline">{email}</a
+                            >
+                        </p>
+                        <p class="text-lg">Location: {location}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>

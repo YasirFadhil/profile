@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Navigation from "../components/Navigation.astro";
 
 const name = "Muchammad Yassir Nur Fadillah";
 
@@ -115,43 +116,10 @@ const categories = ["all", "street", "nature", "portrait", "architecture", "land
 ---
 
 <Layout title="Photography Gallery - Yassir">
-    <div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-        <!-- Navigation -->
-        <nav class="fixed top-0 w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-700/50 z-50">
-            <div class="max-w-6xl mx-auto px-6 py-4">
-                <div class="flex justify-between items-center">
-                    <a href="/" class="text-xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">
-                        Yassir
-                    </a>
-
-                    <!-- Desktop Navigation -->
-                    <div class="hidden md:flex space-x-8">
-                        <a href="/" class="text-slate-300 hover:text-blue-400 transition-colors">Home</a>
-                        <a href="/gallery" class="text-blue-400 font-medium">Gallery</a>
-                        <a href="/#about" class="text-slate-300 hover:text-blue-400 transition-colors">About</a>
-                        <a href="/#contact" class="text-slate-300 hover:text-blue-400 transition-colors">Contact</a>
-                    </div>
-
-                    <!-- Mobile Menu Button -->
-                    <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-blue-400 transition-colors">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-
-                <!-- Mobile Menu -->
-                <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 w-full bg-slate-900/95 backdrop-blur-md border-b border-slate-700/50">
-                    <div class="px-6 py-4 space-y-4">
-                        <a href="/" class="block text-slate-300 hover:text-blue-400 transition-colors mobile-nav-link">Home</a>
-                        <a href="/gallery" class="block text-blue-400 font-medium mobile-nav-link">Gallery</a>
-                        <a href="/#about" class="block text-slate-300 hover:text-blue-400 transition-colors mobile-nav-link">About</a>
-                        <a href="/#contact" class="block text-slate-300 hover:text-blue-400 transition-colors mobile-nav-link">Contact</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
+    <Navigation />
+    <div class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-20">
         <!-- Hero Section -->
-        <section class="pt-32 pb-20 px-6">
+        <section class="pt-12 pb-20 px-6">
             <div class="max-w-6xl mx-auto text-center">
                 <div class="animate-fadeInUp">
                     <h1 class="text-5xl md:text-6xl font-bold mb-6">
@@ -222,7 +190,7 @@ const categories = ["all", "street", "nature", "portrait", "architecture", "land
                                         <span class="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full capitalize">
                                             {photo.category}
                                         </span>
-                                        <button class="text-slate-400 hover:text-blue-400 transition-colors">
+                                        <button class="text-slate-400 hover:text-blue-400 transition-colors" aria-label={`Expand ${photo.title}`}>
                                             <i class="fas fa-expand-alt"></i>
                                         </button>
                                     </div>
@@ -272,85 +240,6 @@ const categories = ["all", "street", "nature", "portrait", "architecture", "land
         </section>
     </div>
 
-    <!-- Gallery Scripts -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile menu functionality
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            if (mobileMenuBtn && mobileMenu) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('hidden');
-                    const icon = mobileMenuBtn.querySelector('i');
-                    if (mobileMenu.classList.contains('hidden')) {
-                        if (icon) icon.className = 'fas fa-bars text-xl';
-                    } else {
-                        if (icon) icon.className = 'fas fa-times text-xl';
-                    }
-                });
-
-                // Close mobile menu when clicking outside
-                document.addEventListener('click', function(event) {
-                    const target = event.target as Node;
-                    if (!mobileMenuBtn.contains(target) && !mobileMenu.contains(target)) {
-                        mobileMenu.classList.add('hidden');
-                        const icon = mobileMenuBtn.querySelector('i');
-                        if (icon) icon.className = 'fas fa-bars text-xl';
-                    }
-                });
-            }
-
-            // Photo filter functionality
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const photoItems = document.querySelectorAll('.photo-item');
-            const noPhotosMsg = document.getElementById('no-photos');
-
-            filterBtns.forEach(btn => {
-                const filterBtn = btn as HTMLButtonElement;
-                filterBtn.addEventListener('click', function() {
-                    const filter = filterBtn.getAttribute('data-filter');
-
-                    // Update active button
-                    filterBtns.forEach(b => {
-                        b.className = b.className.replace(/bg-gradient-to-r from-blue-500 to-violet-500 text-white border-transparent/, 'border-slate-600 text-slate-300 hover:border-blue-400 hover:text-blue-400');
-                    });
-                    filterBtn.className = filterBtn.className.replace(/border-slate-600 text-slate-300 hover:border-blue-400 hover:text-blue-400/, 'bg-gradient-to-r from-blue-500 to-violet-500 text-white border-transparent');
-
-                    // Filter photos
-                    let visibleCount = 0;
-                    photoItems.forEach(item => {
-                        const htmlItem = item as HTMLElement;
-                        const category = htmlItem.getAttribute('data-category');
-                        if (filter === 'all' || category === filter) {
-                            htmlItem.style.display = 'block';
-                            visibleCount++;
-                        } else {
-                            htmlItem.style.display = 'none';
-                        }
-                    });
-
-                    // Show/hide no photos message
-                    if (visibleCount === 0) {
-                        noPhotosMsg?.classList.remove('hidden');
-                    } else {
-                        noPhotosMsg?.classList.add('hidden');
-                    }
-                });
-            });
-
-            // Trigger fade-in animations
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        (entry.target as HTMLElement).style.opacity = '1';
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            photoItems.forEach(item => {
-                observer.observe(item);
-            });
-        });
-    </script>
+    <!-- Load gallery-specific script (filtering + animations). navigation.js is loaded globally via Layout.astro -->
+    <script src="/js/gallery.js" defer></script>
 </Layout>
