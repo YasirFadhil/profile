@@ -35,7 +35,7 @@ const social = {
   github: "https://github.com/YasirFadhil",
   x: "https://twitter.com/ysirnf_",
   instagram: "https://www.instagram.com/ysirnf_/",
-  reddit: "https://reddit.com/u/EitherNose4914",
+  whatsapp: "https://wa.me/6287712336358",
 };
 
 //
@@ -102,7 +102,7 @@ const hobbies = [
   },
 ];
 
-const skills = ["HTML", "CSS", "Astro", "Python", "NixOS"];
+const skills = ["HTML", "CSS", "Astro", "Python", "MS Word", "Canva", "Debian", "Arch Linux", "NixOS"];
 
 //
 // Derived / Helper data
@@ -181,15 +181,15 @@ const timeline = [
         </div>
 
         <div class="mb-10">
-          <h3 class="text-2xl font-semibold text-slate-200 mb-4 border-b border-slate-700/50 pb-2">
+          <h3 class="text-2xl text-center font-semibold text-slate-200 mb-4 border-b border-slate-700/50 pb-2">
             About Me
           </h3>
-          <p class="text-slate-300 text-lg mb-4 leading-relaxed">
+          <p class="text-slate-300 text-center text-lg mb-4 leading-relaxed">
             My name is {name}, and I'm currently {age} years old. I'm studying
             at {school}, majoring in {major}, where I'm developing my technical
             skills and passion for technology.
           </p>
-          <p class="text-slate-300 text-lg leading-relaxed">
+          <p class="text-slate-300 text-center text-lg leading-relaxed">
             I'm passionate about {passion.join(", ")}, and I love exploring new
             technologies and creating things that make a difference.
           </p>
@@ -197,7 +197,7 @@ const timeline = [
 
         <div class="mb-12">
           <h3
-            class="text-2xl font-semibold text-slate-200 mb-6 border-b border-slate-700/50 pb-2 text-center"
+            class="text-2xl text-center font-semibold text-slate-200 mb-6 border-b border-slate-700/50 pb-2"
           >
             My Study
           </h3>
@@ -262,7 +262,9 @@ const timeline = [
         </div>
 
         <div class="max-w-4xl mx-auto mb-16">
-          <h3 class="text-xl font-semibold text-slate-300 mb-6 text-center">My Skills</h3>
+          <h3 class="text-xl font-semibold text-slate-300 mb-6 text-center">
+              My Skills
+          </h3>
           <div class="flex flex-wrap justify-center gap-4">
             {
               skills.map((skill) => (
@@ -298,9 +300,9 @@ const timeline = [
               )
             }
             {
-              social.reddit && (
-                <a href={social.reddit} target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-red-400 transition-colors text-3xl">
-                  <i class="fab fa-reddit" />
+              social.whatsapp && (
+                <a href={social.whatsapp} target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-green-400 transition-colors text-3xl">
+                  <i class="fab fa-whatsapp" />
                 </a>
               )
             }
