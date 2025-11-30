@@ -21,6 +21,16 @@ const projects = [
         external: true,
     },
     {
+        title: "Historical Website",
+        description:
+            "Website for historical information about Netherlands and Japan colonialism in Indonesia until Independence.",
+        link: "https://sejarahindo.vercel.app",
+        repo: "https://github.com/yasirfadhil/nyobo",
+        icon: "fas fa-laptop-code text-blue-400 text-xl",
+        tags: ["HTML", "CSS", "JavaScript"],
+        external: true,
+    },
+    {
         title: "Photography Gallery",
         description:
             "Showcase of my mobile photography work and creative shots.",
@@ -42,6 +52,7 @@ const projects = [
 ];
 
 const list = typeof limit === "number" ? projects.slice(0, limit) : projects;
+const few = list.length < 3;
 ---
 
 <section id="projects" class="py-20 px-6 bg-slate-800/30">
@@ -57,71 +68,145 @@ const list = typeof limit === "number" ? projects.slice(0, limit) : projects;
             </p>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {
-                list.map((project) => (
-                    <div class="group bg-slate-800/70 backdrop-blur-sm border border-slate-600/50 rounded-2xl overflow-hidden hover:border-blue-400/50 hover:bg-slate-700/50 transition-all duration-300">
-                        <div class="p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <h3 class="text-xl font-semibold text-slate-200">
-                                    {project.title}
-                                </h3>
-                                <i class={project.icon} />
-                            </div>
-                            <p class="text-slate-400 text-sm mb-4">
-                                {project.description}
-                            </p>
+        <!-- When there are fewer than 3 items, center them with a flex container.
+         Otherwise use a responsive grid that fills the row. -->
+        {
+            few ? (
+                <div class="flex flex-wrap justify-center gap-6">
+                    {list.map((project) => (
+                        <article class="w-full max-w-sm group bg-slate-800/70 backdrop-blur-sm border border-slate-600/50 rounded-2xl overflow-hidden hover:border-blue-400/50 hover:bg-slate-700/50 transition-all duration-300">
+                            <div class="p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-xl font-semibold text-slate-200">
+                                        {project.title}
+                                    </h3>
+                                    <i class={project.icon} />
+                                </div>
 
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                {project.tags.map((tag) => (
-                                    <span class="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full">
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
+                                <p class="text-slate-400 text-sm mb-4">
+                                    {project.description}
+                                </p>
 
-                            <div class="flex gap-3">
-                                {project.link ? (
-                                    project.external ? (
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    {project.tags.map((tag) => (
+                                        <span class="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+
+                                <div class="flex gap-3">
+                                    {project.link ? (
+                                        project.external ? (
+                                            <a
+                                                href={project.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="text-blue-400 hover:text-blue-300 transition-colors"
+                                            >
+                                                <i class="fas fa-external-link-alt" />
+                                            </a>
+                                        ) : (
+                                            <a
+                                                href={project.link}
+                                                class="text-blue-400 hover:text-blue-300 transition-colors"
+                                            >
+                                                <i class="fas fa-external-link-alt" />
+                                            </a>
+                                        )
+                                    ) : null}
+
+                                    {project.repo ? (
                                         <a
-                                            href={project.link}
+                                            href={project.repo}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            class="text-blue-400 hover:text-blue-300 transition-colors"
+                                            class="text-slate-400 hover:text-slate-300 transition-colors"
                                         >
-                                            <i class="fas fa-external-link-alt" />
+                                            <i class="fab fa-github" />
                                         </a>
-                                    ) : (
-                                        <a
-                                            href={project.link}
-                                            class="text-blue-400 hover:text-blue-300 transition-colors"
-                                        >
-                                            <i class="fas fa-external-link-alt" />
-                                        </a>
-                                    )
-                                ) : null}
+                                    ) : null}
 
-                                {project.repo ? (
-                                    <a
-                                        href={project.repo}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="text-slate-400 hover:text-slate-300 transition-colors"
-                                    >
-                                        <i class="fab fa-github" />
-                                    </a>
-                                ) : null}
-
-                                {!project.link && !project.repo ? (
-                                    <span class="text-slate-500 text-sm">
-                                        In Progress
-                                    </span>
-                                ) : null}
+                                    {!project.link && !project.repo ? (
+                                        <span class="text-slate-500 text-sm">
+                                            In Progress
+                                        </span>
+                                    ) : null}
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                ))
-            }
-        </div>
+                        </article>
+                    ))}
+                </div>
+            ) : (
+                <div
+                    class="grid gap-6"
+                    style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));"
+                >
+                    {list.map((project) => (
+                        <article class="group bg-slate-800/70 backdrop-blur-sm border border-slate-600/50 rounded-2xl overflow-hidden hover:border-blue-400/50 hover:bg-slate-700/50 transition-all duration-300">
+                            <div class="p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <h3 class="text-xl font-semibold text-slate-200">
+                                        {project.title}
+                                    </h3>
+                                    <i class={project.icon} />
+                                </div>
+
+                                <p class="text-slate-400 text-sm mb-4">
+                                    {project.description}
+                                </p>
+
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    {project.tags.map((tag) => (
+                                        <span class="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+
+                                <div class="flex gap-3">
+                                    {project.link ? (
+                                        project.external ? (
+                                            <a
+                                                href={project.link}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                class="text-blue-400 hover:text-blue-300 transition-colors"
+                                            >
+                                                <i class="fas fa-external-link-alt" />
+                                            </a>
+                                        ) : (
+                                            <a
+                                                href={project.link}
+                                                class="text-blue-400 hover:text-blue-300 transition-colors"
+                                            >
+                                                <i class="fas fa-external-link-alt" />
+                                            </a>
+                                        )
+                                    ) : null}
+
+                                    {project.repo ? (
+                                        <a
+                                            href={project.repo}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="text-slate-400 hover:text-slate-300 transition-colors"
+                                        >
+                                            <i class="fab fa-github" />
+                                        </a>
+                                    ) : null}
+
+                                    {!project.link && !project.repo ? (
+                                        <span class="text-slate-500 text-sm">
+                                            In Progress
+                                        </span>
+                                    ) : null}
+                                </div>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            )
+        }
     </div>
 </section>
