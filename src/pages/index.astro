@@ -23,7 +23,7 @@ const personalData = {
 <Layout {...personalData}>
     <Navigation />
     <div
-        class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+        class="min-h-screen bg-linear-to-r from-slate-900 via-slate-800 to-slate-900"
     >
         <!-- Hero Section -->
         <Hero />
@@ -34,7 +34,7 @@ const personalData = {
                 class="max-w-6xl mx-auto text-center animate-fadeInUp animate-delay-200"
             >
                 <h2
-                    class="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent"
+                    class="text-3xl md:text-4xl font-bold mb-6 bg-linear-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent"
                 >
                     About Me
                 </h2>
@@ -47,7 +47,7 @@ const personalData = {
                 </p>
                 <a
                     href="/about"
-                    class="inline-block bg-gradient-to-r from-blue-500 to-violet-500 text-white py-3 px-8 rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
+                    class="inline-block bg-linear-to-r from-blue-500 to-violet-500 text-white py-3 px-8 rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
                 >
                     Learn More <i class="fas fa-arrow-right ml-2"></i>
                 </a>
@@ -55,10 +55,18 @@ const personalData = {
         </section>
 
         <!-- Projects Section -->
-        <Projects />
+        <Projects limit={2} />
+        <div class="max-w-6xl mx-auto text-center mt-6">
+            <a
+                href="/projects"
+                class="inline-block bg-linear-to-r from-blue-500 to-violet-500 text-white py-3 px-8 rounded-full font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+            >
+                View All Projects
+            </a>
+        </div>
 
         <!-- Skills Section -->
-        <Skills />
+        <!-- <Skills /> -->
 
         <!-- Contact Section -->
         <Contact />

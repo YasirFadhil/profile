@@ -1,11 +1,52 @@
 ---
+const { limit } = Astro.props;
+
+const projects = [
+    {
+        title: "Health Website",
+        description: "Website for health information about nutrition.",
+        link: "https://4sehat5sempurna.vercel.app",
+        repo: "https://github.com/yasirfadhil",
+        icon: "fas fa-laptop-code text-blue-400 text-xl",
+        tags: ["HTML", "Tailwind", "JavaScript"],
+        external: true,
+    },
+    {
+        title: "Cloud Storage Website",
+        description: "Website for storing and sharing files.",
+        link: "https://mycloudy.up.railway.app",
+        repo: "https://github.com/yasirfadhil/person",
+        icon: "fas fa-cloud fas text-blue-400 text-xl",
+        tags: ["HTML", "Tailwind", "JavaScript"],
+        external: true,
+    },
+    {
+        title: "Photography Gallery",
+        description:
+            "Showcase of my mobile photography work and creative shots.",
+        link: "/gallery",
+        repo: null,
+        icon: "fas fa-camera text-violet-400 text-xl",
+        tags: ["Photography", "Creative"],
+        external: false,
+    },
+    {
+        title: "Network Projects",
+        description: "Network engineering projects from my vocational studies.",
+        link: null,
+        repo: null,
+        icon: "fas fa-network-wired text-cyan-400 text-xl",
+        tags: ["Networking", "Infrastructure"],
+        external: false,
+    },
+];
+
+const list = typeof limit === "number" ? projects.slice(0, limit) : projects;
 ---
 
 <section id="projects" class="py-20 px-6 bg-slate-800/30">
     <div class="max-w-6xl mx-auto">
-        <div
-            class="text-center mb-16 animate-fadeInUp animate-delay-200"
-        >
+        <div class="text-center mb-16 animate-fadeInUp animate-delay-200">
             <h2
                 class="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent"
             >
@@ -17,130 +58,70 @@
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div
-                class="group bg-slate-800/70 backdrop-blur-sm border border-slate-600/50 rounded-2xl overflow-hidden hover:border-blue-400/50 hover:bg-slate-700/50 transition-all duration-300"
-            >
-                <div class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3
-                            class="text-xl font-semibold text-slate-200"
-                        >
-                            Health Website
-                        </h3>
-                        <i
-                            class="fas fa-laptop-code text-blue-400 text-xl"
-                        ></i>
-                    </div>
-                    <p class="text-slate-400 text-sm mb-4">
-                        Website for a health information about
-                        nutrition.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span
-                            class="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full"
-                            >HTML</span
-                        >
-                        <span
-                            class="px-2 py-1 bg-violet-500/20 text-violet-300 text-xs rounded-full"
-                            >Tailwind</span
-                        >
-                        <span
-                            class="px-2 py-1 bg-green-500/20 text-green-300 text-xs rounded-full"
-                            >JavaScript</span
-                        >
-                    </div>
-                    <div class="flex gap-3">
-                        <a
-                            href="https://4sehat5sempurna.vercel.app"
-                            target="_blank"
-                            class="text-blue-400 hover:text-blue-300 transition-colors"
-                        >
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                        <a
-                            href="https://github.com/yasirfadhil"
-                            target="_blank"
-                            class="text-slate-400 hover:text-slate-300 transition-colors"
-                        >
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            {
+                list.map((project) => (
+                    <div class="group bg-slate-800/70 backdrop-blur-sm border border-slate-600/50 rounded-2xl overflow-hidden hover:border-blue-400/50 hover:bg-slate-700/50 transition-all duration-300">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-xl font-semibold text-slate-200">
+                                    {project.title}
+                                </h3>
+                                <i class={project.icon} />
+                            </div>
+                            <p class="text-slate-400 text-sm mb-4">
+                                {project.description}
+                            </p>
 
-            <div
-                class="group bg-slate-800/70 backdrop-blur-sm border border-slate-600/50 rounded-2xl overflow-hidden hover:border-violet-400/50 hover:bg-slate-700/50 transition-all duration-300"
-            >
-                <div class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3
-                            class="text-xl font-semibold text-slate-200"
-                        >
-                            Photography Gallery
-                        </h3>
-                        <i class="fas fa-camera text-violet-400 text-xl"
-                        ></i>
-                    </div>
-                    <p class="text-slate-400 text-sm mb-4">
-                        Showcase of my mobile photography work and
-                        creative shots
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span
-                            class="px-2 py-1 bg-pink-500/20 text-pink-300 text-xs rounded-full"
-                            >Photography</span
-                        >
-                        <span
-                            class="px-2 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-full"
-                            >Creative</span
-                        >
-                    </div>
-                    <div class="flex gap-3">
-                        <a
-                            href="/gallery"
-                            class="text-blue-400 hover:text-blue-300 transition-colors"
-                        >
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                {project.tags.map((tag) => (
+                                    <span class="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
 
-            <div
-                class="group bg-slate-800/70 backdrop-blur-sm border border-slate-600/50 rounded-2xl overflow-hidden hover:border-cyan-400/50 hover:bg-slate-700/50 transition-all duration-300"
-            >
-                <div class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3
-                            class="text-xl font-semibold text-slate-200"
-                        >
-                            Network Projects
-                        </h3>
-                        <i
-                            class="fas fa-network-wired text-cyan-400 text-xl"
-                        ></i>
+                            <div class="flex gap-3">
+                                {project.link ? (
+                                    project.external ? (
+                                        <a
+                                            href={project.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="text-blue-400 hover:text-blue-300 transition-colors"
+                                        >
+                                            <i class="fas fa-external-link-alt" />
+                                        </a>
+                                    ) : (
+                                        <a
+                                            href={project.link}
+                                            class="text-blue-400 hover:text-blue-300 transition-colors"
+                                        >
+                                            <i class="fas fa-external-link-alt" />
+                                        </a>
+                                    )
+                                ) : null}
+
+                                {project.repo ? (
+                                    <a
+                                        href={project.repo}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-slate-400 hover:text-slate-300 transition-colors"
+                                    >
+                                        <i class="fab fa-github" />
+                                    </a>
+                                ) : null}
+
+                                {!project.link && !project.repo ? (
+                                    <span class="text-slate-500 text-sm">
+                                        In Progress
+                                    </span>
+                                ) : null}
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-slate-400 text-sm mb-4">
-                        Network engineering projects from my vocational
-                        studies
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span
-                            class="px-2 py-1 bg-cyan-500/20 text-cyan-300 text-xs rounded-full"
-                            >Networking</span
-                        >
-                        <span
-                            class="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full"
-                            >Infrastructure</span
-                        >
-                    </div>
-                    <div class="flex gap-3">
-                        <span class="text-slate-500 text-sm"
-                            >In Progress</span
-                        >
-                    </div>
-                </div>
-            </div>
+                ))
+            }
         </div>
     </div>
 </section>
