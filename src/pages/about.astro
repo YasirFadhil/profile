@@ -1,335 +1,319 @@
 ---
+/*
+  Organized imports and constants for maintainability.
+  Sections:
+  - Imports
+  - Meta & Page Info
+  - Contact Info
+  - Personal Info
+  - Education (study)
+  - Interests / Arrays (passion, hobbies, skills)
+  - Derived data (aboutData, timeline)
+*/
+
+//
+// Imports
+//
 import Layout from "../layouts/Layout.astro";
 import Navigation from "../components/Navigation.astro";
 
-const name = "Muchammad Yassir Nur Fadillah";
+//
+// Meta & Page Info
+//
 const title = "About Me";
 const description =
-    "A passionate student with a love for learning and exploring technology.";
-const image = "/images/profile.jpg";
+  "A passionate student with a love for learning and exploring technology.";
 const keywords = ["student", "passion", "technology", "programming"];
-const social = {
-    github: "https://github.com/YasirFadhil",
-    x: "https://twitter.com/ysirnf_",
-    instagram: "https://www.instagram.com/ysirnf_/",
-    reddit: "https://reddit.com/u/EitherNose4914",
-};
+const image = "/images/profile.jpg";
+
+//
+// Contact Info
+//
 const email = "yasirfadhil46@gmail.com";
 const location = "Klaten, Indonesia";
+const social = {
+  github: "https://github.com/YasirFadhil",
+  x: "https://twitter.com/ysirnf_",
+  instagram: "https://www.instagram.com/ysirnf_/",
+  reddit: "https://reddit.com/u/EitherNose4914",
+};
 
+//
+// Personal Info
+//
+const name = "Muchammad Yassir Nur Fadillah";
 const age = 19;
 const major = "Network Engineering";
 const school = "1st State Vocational High School Klaten";
+
+//
+// Education / Study - structured for clarity
+//
 const study = {
-    sd: {
-        name: "State Elementary School Patran",
-        year: "2014-2016",
-    },
-    mi: {
-        name: "Muhammadiyah Elementary School Sabranglor",
-        year: "2016-2020",
-    },
-    smp: {
-        name: "2nd State Junior High School Trucuk",
-        year: "2020-2023",
-    },
-    smk: {
-        name: "1st State Vocational High School Klaten",
-        year: "2023-2026",
-    },
+  sd: {
+    name: "State Elementary School Patran",
+    year: "2014-2016",
+    note:
+      "Started formal education in Yogyakarta while staying with family — early curiosity and still childish.",
+  },
+  mi: {
+    name: "Muhammadiyah Elementary School Sabranglor",
+    year: "2016-2020",
+    note:
+      "Moved back to hometown and continued elementary school began to learn more and focused on school, task and even participated in school activities on science olympiad.",
+  },
+  smp: {
+    name: "2nd State Junior High School Trucuk",
+    year: "2020-2023",
+    note:
+      "Being covid-19 pandemic strider, I had to adapt to online learning and remote collaboration, which taught me the importance of resilience and adaptability.",
+  },
+  smk: {
+    name: "1st State Vocational High School Klaten",
+    year: "2023-2026",
+    note:
+      "Choosing a vocational tech track (Network Engineering) to gain hands-on skills and practical experience.",
+  },
 };
+
+//
+// Interests & Arrays
+//
 const passion = ["web development", "photography", "gaming"];
+
 const hobbies = [
-    {
-        name: "Taking Photos",
-        icon: "fa-camera-retro",
-        description: "Capturing life moments",
-        color: "text-green-400",
-    },
-    {
-        name: "Listening to Music",
-        icon: "fa-music",
-        description: "Finding rhythm",
-        color: "text-purple-400",
-    },
-    {
-        name: "Gaming",
-        icon: "fa-gamepad",
-        description: "Interactive entertainment",
-        color: "text-red-400",
-    },
+  {
+    name: "Taking Photos",
+    icon: "fa-camera-retro",
+    description: "Capturing life moments",
+    color: "text-green-400",
+  },
+  {
+    name: "Listening to Music",
+    icon: "fa-music",
+    description: "Finding rhythm",
+    color: "text-purple-400",
+  },
+  {
+    name: "Gaming",
+    icon: "fa-gamepad",
+    description: "Interactive entertainment",
+    color: "text-red-400",
+  },
 ];
+
 const skills = ["HTML", "CSS", "Astro", "Python", "NixOS"];
 
+//
+// Derived / Helper data
+//
 const aboutData = {
-    name: name,
-    title: title,
-    description: description,
-    image: image,
-    keywords: keywords,
-    social: social,
-    email: email,
-    location: location,
-    age: age,
-    major: major,
-    school: school,
-    passion: passion,
-    hobbies: hobbies,
-    skills: skills,
+  name,
+  title,
+  description,
+  image,
+  keywords,
+  social,
+  email,
+  location,
+  age,
+  major,
+  school,
+  passion,
+  hobbies,
+  skills,
 };
 
-// Build a timeline array from the `study` object so it's easy to render
+// Build a timeline array from `study` so it's easy to render and maintain.
 const timeline = [
-    {
-        key: "sd",
-        title: `${study.sd.name}`,
-        year: study.sd.year,
-        icon: "fa-school",
-        description:
-            "My first school years in Yogyakarta — early learning with family and friends.",
-    },
-    {
-        key: "mi",
-        title: `${study.mi.name}`,
-        year: study.mi.year,
-        icon: "fa-child",
-        description:
-            "Moved back to my hometown and continued elementary school here. I enjoyed group projects and started to learn more seriously than before.",
-    },
-    {
-        key: "smp",
-        title: `${study.smp.name}`,
-        year: study.smp.year,
-        icon: "fa-graduation-cap",
-        description:
-            "Junior high introduced me to the world I was never seen before, and I started to explore my interests in science and technology.",
-    },
-    {
-        key: "smk",
-        title: `${study.smk.name}`,
-        year: study.smk.year,
-        icon: "fa-network-wired",
-        description:
-            "I chose a tech-based vocational path to deepen my skills in networking and practical IT — focusing on hands-on learning and projects.",
-    },
+  {
+    key: "sd",
+    title: study.sd.name,
+    year: study.sd.year,
+    icon: "fa-school",
+    description: study.sd.note,
+  },
+  {
+    key: "mi",
+    title: study.mi.name,
+    year: study.mi.year,
+    icon: "fa-child",
+    description: study.mi.note,
+  },
+  {
+    key: "smp",
+    title: study.smp.name,
+    year: study.smp.year,
+    icon: "fa-graduation-cap",
+    description: study.smp.note,
+  },
+  {
+    key: "smk",
+    title: study.smk.name,
+    year: study.smk.year,
+    icon: "fa-network-wired",
+    description: study.smk.note,
+  },
 ];
 ---
 
 <Layout {...aboutData}>
-    <Navigation />
-    <div
-        class="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 pt-20"
-    >
-        <div class="container mx-auto px-6 py-16">
-            <h1
-                class="text-4xl md:text-5xl font-bold mb-8 text-center bg-linear-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent"
-            >
-                {title}
-            </h1>
+  <Navigation />
+  <div class="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 pt-20">
+    <div class="container mx-auto px-6 py-16">
+      <h1
+        class="text-4xl md:text-5xl font-bold mb-8 text-center bg-linear-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent"
+      >
+        {title}
+      </h1>
 
-            <div
-                class="max-w-4xl mx-auto bg-slate-800/70 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 shadow-lg"
-            >
-                <div class="text-center mb-10">
-                    <img
-                        src={image}
-                        alt={name}
-                        class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-blue-400 object-cover"
-                    />
-                    <h2 class="text-3xl font-semibold text-slate-200 mb-2">
-                        {name}
-                    </h2>
-                    <p class="text-blue-300 text-lg">
-                        {major} Student at {school}
-                    </p>
-                </div>
-
-                <div class="mb-10">
-                    <h3
-                        class="text-2xl font-semibold text-slate-200 mb-4 border-b border-slate-700/50 pb-2"
-                    >
-                        About Me
-                    </h3>
-                    <p class="text-slate-300 text-lg mb-4 leading-relaxed">
-                        My name is {name}, and I'm currently {age} years old. I'm
-                        studying at {school}, majoring in {major}, where I'm
-                        developing my technical skills and passion for
-                        technology.
-                    </p>
-                    <p class="text-slate-300 text-lg leading-relaxed">
-                        I'm passionate about {passion.join(", ")}, and I love
-                        exploring new technologies and creating things that make
-                        a difference.
-                    </p>
-                </div>
-
-                <div class="mb-12">
-                    <h3
-                        class="text-2xl font-semibold text-slate-200 mb-6 border-b border-slate-700/50 pb-2 text-center"
-                    >
-                        My Study
-                    </h3>
-
-                    <!-- Timeline container -->
-                    <div class="relative pl-10">
-                        <!-- vertical line -->
-                        <div
-                            class="absolute left-6 top-0 bottom-0 w-px bg-slate-700/40"
-                            aria-hidden="true"
-                        />
-                        {
-                            timeline.map((item, index) => (
-                                <div class="relative mb-8">
-                                    <!-- Connector dot / icon -->
-                                    <div class="absolute -left-9 top-2">
-                                        <div class="w-12 h-12 rounded-full bg-linear-to-br from-blue-500 to-violet-500 flex items-center justify-center text-white shadow-lg">
-                                            <i class={`fas ${item.icon} text-lg`} />
-                                        </div>
-                                        <!-- small ring to make it pop -->
-                                    </div>
-
-                                    <!-- Card -->
-                                    <div class="ml-2 pl-6">
-                                        <div class="bg-slate-900/60 border border-slate-700/50 rounded-2xl p-4 hover:border-blue-400/60 transition-colors duration-300">
-                                            <div class="flex items-center justify-between">
-                                                <h4 class="text-lg font-semibold text-slate-200">
-                                                    {item.title}
-                                                </h4>
-                                                <span class="text-sm text-slate-400">
-                                                    {item.year}
-                                                </span>
-                                            </div>
-                                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">
-                                                {item.description}
-                                            </p>
-                                            <!-- Optional actions or highlights -->
-                                            <div class="mt-3 flex gap-2">
-                                                <span class="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full">Learning</span>
-                                                <span class="text-xs bg-violet-500/20 text-violet-300 px-2 py-1 rounded-full">Growth</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
-
-                <div class="mb-10">
-                    <h3
-                        class="text-2xl font-semibold text-slate-200 mb-6 border-b border-slate-700/50 pb-2 text-center"
-                    >
-                        My Hobbies
-                    </h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {
-                            hobbies.map((hobby) => (
-                                <div class="bg-slate-900/50 border border-slate-700/50 p-6 rounded-xl text-center hover:border-blue-400/50 hover:bg-slate-700/50 transition-all duration-300">
-                                    <div class="mb-3">
-                                        <i
-                                            class={`fas ${hobby.icon} ${hobby.color} text-3xl`}
-                                        />
-                                    </div>
-                                    <span class="text-slate-200 font-medium block text-lg">
-                                        {hobby.name}
-                                    </span>
-                                    <p class="text-slate-400 text-sm mt-1">
-                                        {hobby.description}
-                                    </p>
-                                </div>
-                            ))
-                        }
-                    </div>
-                </div>
-
-                <div class="max-w-4xl mx-auto mb-16">
-                    <h3
-                        class="text-xl font-semibold text-slate-300 mb-6 text-center"
-                    >
-                        My Skills
-                    </h3>
-                    <div class="flex flex-wrap justify-center gap-4">
-                        {
-                            skills.map((skill) => (
-                                <span class="px-4 py-2 bg-blue-500/20 text-blue-300 text-sm rounded-full">
-                                    {skill}
-                                </span>
-                            ))
-                        }
-                    </div>
-                </div>
-
-                <div class="text-center">
-                    <h3
-                        class="text-2xl font-semibold text-slate-200 mb-4 border-b border-slate-700/50 pb-2"
-                    >
-                        Connect with Me
-                    </h3>
-                    <div
-                        class="social-icons flex justify-center gap-6 mb-6"
-                    >
-                        {
-                            social.github && (
-                                <a
-                                    href={social.github}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="text-slate-300 hover:text-blue-400 transition-colors text-3xl"
-                                >
-                                    <i class="fab fa-github" />
-                                </a>
-                            )
-                        }
-                        {
-                            social.x && (
-                                <a
-                                    href={social.x}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="text-slate-300 hover:text-blue-400 transition-colors text-3xl"
-                                >
-                                    <i class="fab fa-x-twitter" />
-                                </a>
-                            )
-                        }
-                        {
-                            social.instagram && (
-                                <a
-                                    href={social.instagram}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="text-slate-300 hover:text-pink-400 transition-colors text-3xl"
-                                >
-                                    <i class="fab fa-instagram" />
-                                </a>
-                            )
-                        }
-                        {
-                            social.reddit && (
-                                <a
-                                    href={social.reddit}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="text-slate-300 hover:text-red-400 transition-colors text-3xl"
-                                >
-                                    <i class="fab fa-reddit" />
-                                </a>
-                            )
-                        }
-                    </div>
-                    <div class="contact-info text-slate-300">
-                        <p class="text-lg">
-                            Email:{" "}
-                            <a
-                                href={`mailto:${email}`}
-                                class="text-blue-400 hover:underline"
-                                >{email}</a
-                            >
-                        </p>
-                        <p class="text-lg">Location: {location}</p>
-                    </div>
-                </div>
-            </div>
+      <div class="max-w-4xl mx-auto bg-slate-800/70 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 shadow-lg">
+        <div class="text-center mb-10">
+          <img
+            src={image}
+            alt={name}
+            class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-blue-400 object-cover"
+          />
+          <h2 class="text-3xl font-semibold text-slate-200 mb-2">{name}</h2>
+          <p class="text-blue-300 text-lg">
+            {major} Student at {school}
+          </p>
         </div>
+
+        <div class="mb-10">
+          <h3 class="text-2xl font-semibold text-slate-200 mb-4 border-b border-slate-700/50 pb-2">
+            About Me
+          </h3>
+          <p class="text-slate-300 text-lg mb-4 leading-relaxed">
+            My name is {name}, and I'm currently {age} years old. I'm studying
+            at {school}, majoring in {major}, where I'm developing my technical
+            skills and passion for technology.
+          </p>
+          <p class="text-slate-300 text-lg leading-relaxed">
+            I'm passionate about {passion.join(", ")}, and I love exploring new
+            technologies and creating things that make a difference.
+          </p>
+        </div>
+
+        <div class="mb-12">
+          <h3
+            class="text-2xl font-semibold text-slate-200 mb-6 border-b border-slate-700/50 pb-2 text-center"
+          >
+            My Study
+          </h3>
+
+          <!-- Timeline container -->
+          <div class="relative pl-10">
+            <!-- vertical line -->
+            <div class="absolute left-6 top-0 bottom-0 w-px bg-slate-700/40" aria-hidden="true" />
+
+            {
+              timeline.map((item, index) => (
+                <div class="relative mb-8">
+                  <!-- Connector dot / icon -->
+                  <div class="absolute -left-9 top-2">
+                    <div class="w-12 h-12 rounded-full bg-linear-to-br from-blue-500 to-violet-500 flex items-center justify-center text-white shadow-lg">
+                      <i class={`fas ${item.icon} text-lg`} />
+                    </div>
+                  </div>
+
+                  <!-- Card -->
+                  <div class="ml-2 pl-6">
+                    <div class="bg-slate-900/60 border border-slate-700/50 rounded-2xl p-4 hover:border-blue-400/60 transition-colors duration-300">
+                      <div class="flex items-center justify-between">
+                        <h4 class="text-lg font-semibold text-slate-200">{item.title}</h4>
+                        <span class="text-sm text-slate-400">{item.year}</span>
+                      </div>
+                      <p class="text-slate-300 text-sm mt-2 leading-relaxed">
+                        {item.description}
+                      </p>
+
+                      <div class="mt-3 flex gap-2">
+                        <span class="text-xs bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full">Learning</span>
+                        <span class="text-xs bg-violet-500/20 text-violet-300 px-2 py-1 rounded-full">Growth</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="mb-10">
+          <h3
+            class="text-2xl font-semibold text-slate-200 mb-6 border-b border-slate-700/50 pb-2 text-center"
+          >
+            My Hobbies
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {
+              hobbies.map((hobby) => (
+                <div class="bg-slate-900/50 border border-slate-700/50 p-6 rounded-xl text-center hover:border-blue-400/50 hover:bg-slate-700/50 transition-all duration-300">
+                  <div class="mb-3">
+                    <i class={`fas ${hobby.icon} ${hobby.color} text-3xl`} />
+                  </div>
+                  <span class="text-slate-200 font-medium block text-lg">{hobby.name}</span>
+                  <p class="text-slate-400 text-sm mt-1">{hobby.description}</p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="max-w-4xl mx-auto mb-16">
+          <h3 class="text-xl font-semibold text-slate-300 mb-6 text-center">My Skills</h3>
+          <div class="flex flex-wrap justify-center gap-4">
+            {
+              skills.map((skill) => (
+                <span class="px-4 py-2 bg-blue-500/20 text-blue-300 text-sm rounded-full">{skill}</span>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="text-center">
+          <h3 class="text-2xl font-semibold text-slate-200 mb-4 border-b border-slate-700/50 pb-2">Connect with Me</h3>
+
+          <div class="social-icons flex justify-center gap-6 mb-6">
+            {
+              social.github && (
+                <a href={social.github} target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-blue-400 transition-colors text-3xl">
+                  <i class="fab fa-github" />
+                </a>
+              )
+            }
+            {
+              social.x && (
+                <a href={social.x} target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-blue-400 transition-colors text-3xl">
+                  <i class="fab fa-x-twitter" />
+                </a>
+              )
+            }
+            {
+              social.instagram && (
+                <a href={social.instagram} target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-pink-400 transition-colors text-3xl">
+                  <i class="fab fa-instagram" />
+                </a>
+              )
+            }
+            {
+              social.reddit && (
+                <a href={social.reddit} target="_blank" rel="noopener noreferrer" class="text-slate-300 hover:text-red-400 transition-colors text-3xl">
+                  <i class="fab fa-reddit" />
+                </a>
+              )
+            }
+          </div>
+
+          <div class="contact-info text-slate-300">
+            <p class="text-lg">
+              Email: <a href={`mailto:${email}`} class="text-blue-400 hover:underline">{email}</a>
+            </p>
+            <p class="text-lg">Location: {location}</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </Layout>
