@@ -20,7 +20,8 @@ import Navigation from "../components/Navigation.astro";
 //
 // Meta & Page Info
 //
-const title = "About Me";
+const title = "ysirnf - About Me";
+const pagetitle = "About Me";
 const description =
   "A passionate student with a love for learning and exploring technology.";
 const keywords = ["student", "passion", "technology", "programming"];
@@ -109,7 +110,7 @@ const skills = ["HTML", "CSS", "Astro", "Python", "MS Word", "Canva", "Debian", 
 //
 const aboutData = {
   name,
-  title,
+  pagetitle,
   description,
   image,
   keywords,
@@ -157,14 +158,14 @@ const timeline = [
 ];
 ---
 
-<Layout {...aboutData}>
+<Layout title={title} {...aboutData}>
   <Navigation />
   <div class="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 pt-20">
     <div class="container mx-auto px-6 py-16">
       <h1
         class="text-4xl md:text-5xl font-bold mb-8 text-center bg-linear-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent"
       >
-        {title}
+        {pagetitle}
       </h1>
 
       <div class="max-w-4xl mx-auto bg-slate-800/70 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 shadow-lg">
