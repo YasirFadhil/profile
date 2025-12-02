@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Navigation from "../components/Navigation.astro";
+const title = "ysirnf - Gallery";
 
 const name = "Muchammad Yassir Nur Fadillah";
 
@@ -114,7 +115,8 @@ const photos = [
 const categories = ["all", "street", "nature", "portrait", "architecture", "landscape"];
 ---
 
-<Layout title="Photography Gallery - Yassir">
+<Layout title={title}>
+
     <Navigation />
     <div class="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 pt-20">
         <!-- Hero Section -->
