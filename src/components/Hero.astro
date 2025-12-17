@@ -1,4 +1,6 @@
 ---
+import TypingText from "./TypingText.astro";
+
 const name = "Muchammad Yassir Nur Fadillah";
 const age = 18;
 ---
@@ -10,7 +12,11 @@ const age = 18;
                 <span
                     class="bg-gradient-to-r from-blue-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent"
                 >
-                    Hello, I'm Yassir
+                    <TypingText
+                        text="Hello, I'm Yassir"
+                        speed={80}
+                        cursorVisible={false}
+                    />
                 </span>
             </h1>
             <p
