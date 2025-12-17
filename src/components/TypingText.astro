@@ -1,0 +1,100 @@
+---
+interface Props {
+  text: string;
+  speed?: number;
+  cursorVisible?: boolean;
+}
+
+const { text, speed = 100, cursorVisible = true } = Astro.props;
+---
+
+<div class="typing-container inline-block">
+  <span class="typing-text">{text}</span>
+  {cursorVisible && <span class="typing-cursor">|</span>}
+</div>
+
+<style define:vars={{ speed: `${speed}ms` }}>
+  .typing-container {
+    display: inline-block;
+  }
+
+  .typing-text {
+    animation: typing var(--speed) steps(var(--steps), end) forwards;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid currentColor;
+    padding-right: 2px;
+  }
+
+  .typing-cursor {
+    display: inline-block;
+    animation: blink 0.7s infinite;
+    margin-left: 2px;
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blink {
+    0%, 49% {
+      opacity: 1;
+    }
+    50%, 100% {
+      opacity: 0;
+    }
+  }
+</style>
+
+<script define:vars={{ speed }}>
+  // Calculate steps based on text length
+  const typingText = document.querySelector('.typing-text');
+  if (typingText) {
+    const textLength = typingText.textContent?.length || 0;
+    typingText.style.setProperty('--steps', textLength.toString());
+  }
+</script>
+```
+
+Now here's how to use it in your pages:
+
+```
+---
+import TypingText from '../components/TypingText.astro';
+---
+
+<main>
+  <h1 class="text-4xl font-bold">
+    <TypingText text="Welcome to my portfolio!" speed={50} />
+  </h1>
+
+  <p class="mt-4">
+    <TypingText text="This is an animated typing effect." speed={75} cursorVisible={true} />
+  </p>
+</main>
+```
+
+## Props:
+- **`text`** (required): The text to animate
+- **`speed`** (optional): Speed of typing in milliseconds per character (default: 100)
+- **`cursorVisible`** (optional): Show blinking cursor (default: true)
+
+## Example with different speeds:
+
+```astro
+<!-- Fast typing -->
+<TypingText text="Quick typing!" speed={30} />
+
+<!-- Slow typing -->
+<TypingText text="Slow and steady..." speed={150} />
+
+<!-- No cursor -->
+<TypingText text="Typing without cursor" speed={100} cursorVisible={false} />
+```
+
+The component uses Tailwind-compatible CSS animations and will work perfectly with your existing setup!
