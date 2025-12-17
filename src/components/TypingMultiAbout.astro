@@ -1,44 +1,49 @@
 ---
 interface Props {
-    text: string;
+    texts: string[];
     speed?: number;
     cursorVisible?: boolean;
 }
 
-const { text, speed = 100, cursorVisible = true } = Astro.props;
+const { texts, speed = 100, cursorVisible = true } = Astro.props;
 ---
 
 <div
-    class="typing-container"
-    data-text={text}
+    class="typing-multi-container"
+    data-texts={JSON.stringify(texts)}
     data-speed={speed}
     data-cursor={cursorVisible}
-    style={`--text-length: ${text.length}`}
 >
-    <span class="typing-text"></span>
-    {cursorVisible && <span class="typing-cursor">|</span>}
+    <span class="typing-multi-text"></span>{
+        cursorVisible && <span class="typing-multi-cursor" />
+    }
 </div>
 
 <style>
-    .typing-container {
-        display: block;
+    .typing-multi-container {
+        display: inline-block;
         position: relative;
         width: 100%;
-        min-height: 1.5em;
+        padding-top: 0.5em;
+        min-height: 4.5em;
         line-height: 1.5;
     }
 
-    .typing-text {
+    .typing-multi-text {
         display: inline;
         white-space: normal;
         word-break: break-word;
-        min-height: 1em;
+        color: oklch(80.9% 0.105 251.813);
     }
 
-    .typing-cursor {
+    .typing-multi-cursor {
         display: inline-block;
         animation: blink 0.7s step-end infinite;
         margin-left: 2px;
+        width: 2px;
+        height: 1em;
+        background-color: currentColor;
+        vertical-align: text-bottom;
     }
 
     @keyframes blink {
@@ -54,22 +59,27 @@ const { text, speed = 100, cursorVisible = true } = Astro.props;
 </style>
 
 <script>
-    function initializeTyping() {
-        const containers = document.querySelectorAll(".typing-container");
+    function initializeMultiTyping() {
+        const containers = document.querySelectorAll(".typing-multi-container");
 
         containers.forEach((container) => {
-            const text = container.getAttribute("data-text") || "";
+            const textsJson = container.getAttribute("data-texts") || "[]";
+            const texts = JSON.parse(textsJson);
             const speed = parseInt(
                 container.getAttribute("data-speed") || "100",
             );
-            const typingText = container.querySelector(".typing-text");
+            const typingText = container.querySelector(".typing-multi-text");
 
-            if (!typingText) return;
+            if (!typingText || texts.length === 0) return;
 
+            let currentTextIndex = 0;
             let currentIndex = 0;
             let isDeleting = false;
+            const currentText = texts[currentTextIndex];
 
             const typeCharacter = () => {
+                const text = texts[currentTextIndex];
+
                 if (!isDeleting) {
                     // Typing phase
                     if (currentIndex < text.length) {
@@ -79,7 +89,7 @@ const { text, speed = 100, cursorVisible = true } = Astro.props;
                     } else {
                         // Done typing, wait before deleting
                         isDeleting = true;
-                        setTimeout(typeCharacter, 1500);
+                        setTimeout(typeCharacter, 2000);
                     }
                 } else {
                     // Deleting phase
@@ -91,7 +101,9 @@ const { text, speed = 100, cursorVisible = true } = Astro.props;
                         currentIndex--;
                         setTimeout(typeCharacter, speed / 2);
                     } else {
-                        // Done deleting, restart
+                        // Done deleting, move to next text
+                        currentTextIndex =
+                            (currentTextIndex + 1) % texts.length;
                         isDeleting = false;
                         setTimeout(typeCharacter, 500);
                     }
@@ -104,8 +116,8 @@ const { text, speed = 100, cursorVisible = true } = Astro.props;
 
     // Run when DOM is ready
     if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initializeTyping);
+        document.addEventListener("DOMContentLoaded", initializeMultiTyping);
     } else {
-        initializeTyping();
+        initializeMultiTyping();
     }
 </script>
