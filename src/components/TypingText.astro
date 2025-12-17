@@ -13,6 +13,7 @@ const { text, speed = 100, cursorVisible = true } = Astro.props;
     data-text={text}
     data-speed={speed}
     data-cursor={cursorVisible}
+    style={`--text-length: ${text.length}`}
 >
     <span class="typing-text"></span>
     {cursorVisible && <span class="typing-cursor">|</span>}
@@ -20,12 +21,17 @@ const { text, speed = 100, cursorVisible = true } = Astro.props;
 
 <style>
     .typing-container {
-        display: inline-block;
+        display: block;
+        position: relative;
+        width: 100%;
+        min-height: 1.5em;
+        line-height: 1.5;
     }
 
     .typing-text {
-        display: inline-block;
-        white-space: nowrap;
+        display: inline;
+        white-space: normal;
+        word-break: break-word;
         min-height: 1em;
     }
 
@@ -48,25 +54,58 @@ const { text, speed = 100, cursorVisible = true } = Astro.props;
 </style>
 
 <script>
-    const containers = document.querySelectorAll(".typing-container");
+    function initializeTyping() {
+        const containers = document.querySelectorAll(".typing-container");
 
-    containers.forEach((container) => {
-        const text = container.getAttribute("data-text") || "";
-        const speed = parseInt(container.getAttribute("data-speed") || "100");
-        const typingText = container.querySelector(".typing-text");
+        containers.forEach((container) => {
+            const text = container.getAttribute("data-text") || "";
+            const speed = parseInt(
+                container.getAttribute("data-speed") || "100",
+            );
+            const typingText = container.querySelector(".typing-text");
 
-        if (!typingText) return;
+            if (!typingText) return;
 
-        let currentIndex = 0;
+            let currentIndex = 0;
+            let isDeleting = false;
 
-        const typeCharacter = () => {
-            if (currentIndex < text.length) {
-                typingText.textContent += text[currentIndex];
-                currentIndex++;
-                setTimeout(typeCharacter, speed);
-            }
-        };
+            const typeCharacter = () => {
+                if (!isDeleting) {
+                    // Typing phase
+                    if (currentIndex < text.length) {
+                        typingText.textContent += text[currentIndex];
+                        currentIndex++;
+                        setTimeout(typeCharacter, speed);
+                    } else {
+                        // Done typing, wait before deleting
+                        isDeleting = true;
+                        setTimeout(typeCharacter, 1500);
+                    }
+                } else {
+                    // Deleting phase
+                    if (currentIndex > 0) {
+                        typingText.textContent = text.substring(
+                            0,
+                            currentIndex - 1,
+                        );
+                        currentIndex--;
+                        setTimeout(typeCharacter, speed / 2);
+                    } else {
+                        // Done deleting, restart
+                        isDeleting = false;
+                        setTimeout(typeCharacter, 500);
+                    }
+                }
+            };
 
-        typeCharacter();
-    });
+            typeCharacter();
+        });
+    }
+
+    // Run when DOM is ready
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initializeTyping);
+    } else {
+        initializeTyping();
+    }
 </script>
