@@ -1,6 +1,12 @@
 ---
+import TypingMulti from "./TypingMulti.astro";
+
 const name = "Muchammad Yassir Nur Fadillah";
-const age = 19;
+const age = 18;
+const typingTexts = [
+    `A ${age}-year-old passionate student exploring technology.`,
+    "Nice to meet you! Welcome to my website!.",
+];
 ---
 
 <section class="pt-32 pb-20 px-6">
@@ -8,20 +14,24 @@ const age = 19;
         <div class="animate-fadeInUp">
             <h1 class="text-5xl md:text-7xl font-bold mb-6">
                 <span
-                    class="bg-gradient-to-r from-blue-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent"
+                    class="bg-linear-to-r from-blue-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent"
                 >
                     Hello, I'm Yassir
                 </span>
             </h1>
-            <p
-                class="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed"
+            <div
+                class="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed min-h-[3em]"
             >
-                A {age}-year-old student. Passionate about learning IT.
-            </p>
+                <TypingMulti
+                    texts={typingTexts}
+                    speed={50}
+                    cursorVisible={true}
+                />
+            </div>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                     href="/#projects"
-                    class="bg-gradient-to-r from-blue-500 to-violet-500 text-white px-8 py-3 rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105"
+                    class="bg-linear-to-r from-blue-500 to-violet-500 text-white px-8 py-3 rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105"
                 >
                     View My Work
                 </a>
