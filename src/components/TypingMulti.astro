@@ -1,8 +1,8 @@
 ---
 interface Props {
-  texts: string[];
-  speed?: number;
-  cursorVisible?: boolean;
+    texts: string[];
+    speed?: number;
+    cursorVisible?: boolean;
 }
 
 const { texts, speed = 100, cursorVisible = true } = Astro.props;
@@ -14,15 +14,17 @@ const { texts, speed = 100, cursorVisible = true } = Astro.props;
     data-speed={speed}
     data-cursor={cursorVisible}
 >
-    <span class="typing-multi-text"></span>{cursorVisible && <span class="typing-multi-cursor"></span>}
+    <span class="typing-multi-text"></span>{
+        cursorVisible && <span class="typing-multi-cursor" />
+    }
 </div>
 
 <style>
     .typing-multi-container {
-        display: block;
+        display: inline-block;
         position: relative;
         width: 100%;
-        min-height: 1.5em;
+        min-height: 5em;
         line-height: 1.5;
     }
 
@@ -30,7 +32,6 @@ const { texts, speed = 100, cursorVisible = true } = Astro.props;
         display: inline;
         white-space: normal;
         word-break: break-word;
-        min-height: 1em;
     }
 
     .typing-multi-cursor {
@@ -57,9 +58,7 @@ const { texts, speed = 100, cursorVisible = true } = Astro.props;
 
 <script>
     function initializeMultiTyping() {
-        const containers = document.querySelectorAll(
-            ".typing-multi-container",
-        );
+        const containers = document.querySelectorAll(".typing-multi-container");
 
         containers.forEach((container) => {
             const textsJson = container.getAttribute("data-texts") || "[]";
