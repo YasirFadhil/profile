@@ -173,11 +173,14 @@ const timeline = [
 
       <div class="max-w-4xl mx-auto bg-slate-800/70 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 shadow-lg">
         <div class="text-center mb-10">
-          <img
-            src={image}
-            alt={name}
-            class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-blue-400 object-cover"
-          />
+          <div class="profile-photo-container relative w-40 h-40 mx-auto mb-6 cursor-pointer">
+            <div class="glow-effect absolute inset-0 bg-gradient-to-r from-blue-500 to-violet-500 rounded-full blur-lg opacity-75 animate-pulse"></div>
+            <img
+              src={image}
+              alt={name}
+              class="relative w-40 h-40 rounded-full border-1 border-blue-400 object-cover transition-transform duration-300"
+            />
+          </div>
           <h2 class="text-3xl font-semibold text-slate-200 mb-2">{name}</h2>
           <p class="text-blue-300 text-lg">
             <!-- {major} Student at {school} -->
@@ -324,3 +327,34 @@ const timeline = [
     </div>
   </div>
 </Layout>
+
+<style>
+  .profile-photo-container {
+    transition: transform 0.3s ease;
+  }
+
+  .profile-photo-container:hover .glow-effect,
+  .profile-photo-container:active .glow-effect {
+    animation: bloom 0.6s ease-out;
+  }
+
+  .profile-photo-container:hover img,
+  .profile-photo-container:active img {
+    transform: scale(1.05);
+  }
+
+  @keyframes bloom {
+    0% {
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+      opacity: 0.75;
+    }
+    50% {
+      box-shadow: 0 0 0 30px rgba(59, 130, 246, 0);
+      opacity: 1;
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+      opacity: 0.75;
+    }
+  }
+</style>
