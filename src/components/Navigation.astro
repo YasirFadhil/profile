@@ -7,9 +7,8 @@ const name = "ysirnf";
 >
     <div class="max-w-6xl mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
-            <h1
-                class="text-xl font-bold bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent"
-            >
+            <!-- title -->
+            <h1 class="text-xl font-bold nav-animated-gradient">
                 <a href="/">{name}</a>
             </h1>
 
@@ -76,3 +75,26 @@ const name = "ysirnf";
         </div>
     </div>
 </nav>
+
+<style>
+    .nav-animated-gradient {
+        background: linear-gradient(90deg, #60a5fa, #a78bfa, #06b6d4, #60a5fa);
+        background-size: 300% 300%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientFlow 4s ease infinite;
+    }
+
+    @keyframes gradientFlow {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+</style>
