@@ -59,32 +59,68 @@ const { texts, speed = 100, cursorVisible = true } = Astro.props;
 </style>
 
 <script>
-    function initializeMultiTyping() {
+    interface TypingState {
+        currentIndex: number;
+        timeoutId: ReturnType<typeof setTimeout> | null;
+        isRunning: boolean;
+    }
+
+    // Map to track typing state for each container
+    const typingStates = new WeakMap<Element, TypingState>();
+
+    function getTypingState(container: Element): TypingState {
+        if (!typingStates.has(container)) {
+            typingStates.set(container, {
+                currentIndex: 0,
+                timeoutId: null,
+                isRunning: false,
+            });
+        }
+        return typingStates.get(container)!;
+    }
+
+    function initializeMultiTyping(): void {
         const containers = document.querySelectorAll(".typing-multi-container");
 
-        containers.forEach((container) => {
+        containers.forEach((container: Element) => {
+            const state = getTypingState(container);
+
+            // Cancel any existing timeout
+            if (state.timeoutId) {
+                clearTimeout(state.timeoutId);
+            }
+
             const textsJson = container.getAttribute("data-texts") || "[]";
-            const texts = JSON.parse(textsJson);
+            const texts: string[] = JSON.parse(textsJson);
             const speed = parseInt(
                 container.getAttribute("data-speed") || "100",
             );
-            const typingText = container.querySelector(".typing-multi-text");
+            const typingText = container.querySelector(
+                ".typing-multi-text",
+            ) as HTMLElement | null;
 
             if (!typingText || texts.length === 0) return;
 
-            // Clear previous text in case of re-initialization
+            // Reset state
+            state.currentIndex = 0;
+            state.isRunning = true;
             typingText.textContent = "";
 
-            let currentIndex = 0;
             const fullText = texts[0]; // Only use first text
 
-            const typeCharacter = () => {
-                if (currentIndex < fullText.length) {
-                    typingText.textContent += fullText[currentIndex];
-                    currentIndex++;
-                    setTimeout(typeCharacter, speed);
+            const typeCharacter = (): void => {
+                if (state.currentIndex < fullText.length) {
+                    if (typingText) {
+                        typingText.textContent = fullText.substring(
+                            0,
+                            state.currentIndex + 1,
+                        );
+                    }
+                    state.currentIndex++;
+                    state.timeoutId = setTimeout(typeCharacter, speed);
+                } else {
+                    state.isRunning = false;
                 }
-                // When done, simply stop - cursor keeps blinking
             };
 
             typeCharacter();
