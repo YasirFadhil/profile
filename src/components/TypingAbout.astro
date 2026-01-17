@@ -59,10 +59,31 @@ const { texts, speed = 100, cursorVisible = true } = Astro.props;
 </style>
 
 <script>
+    // Map to track typing state for each container
+    const typingStates = new WeakMap();
+
+    function getTypingState(container) {
+        if (!typingStates.has(container)) {
+            typingStates.set(container, {
+                currentIndex: 0,
+                timeoutId: null,
+                isRunning: false,
+            });
+        }
+        return typingStates.get(container);
+    }
+
     function initializeMultiTyping() {
         const containers = document.querySelectorAll(".typing-multi-container");
 
         containers.forEach((container) => {
+            const state = getTypingState(container);
+
+            // Cancel any existing timeout
+            if (state.timeoutId) {
+                clearTimeout(state.timeoutId);
+            }
+
             const textsJson = container.getAttribute("data-texts") || "[]";
             const texts = JSON.parse(textsJson);
             const speed = parseInt(
@@ -72,19 +93,24 @@ const { texts, speed = 100, cursorVisible = true } = Astro.props;
 
             if (!typingText || texts.length === 0) return;
 
-            // Clear previous text in case of re-initialization
+            // Reset state
+            state.currentIndex = 0;
+            state.isRunning = true;
             typingText.textContent = "";
 
-            let currentIndex = 0;
             const fullText = texts[0]; // Only use first text
 
             const typeCharacter = () => {
-                if (currentIndex < fullText.length) {
-                    typingText.textContent += fullText[currentIndex];
-                    currentIndex++;
-                    setTimeout(typeCharacter, speed);
+                if (state.currentIndex < fullText.length) {
+                    typingText.textContent = fullText.substring(
+                        0,
+                        state.currentIndex + 1,
+                    );
+                    state.currentIndex++;
+                    state.timeoutId = setTimeout(typeCharacter, speed);
+                } else {
+                    state.isRunning = false;
                 }
-                // When done, simply stop - cursor keeps blinking
             };
 
             typeCharacter();
