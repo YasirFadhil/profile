@@ -2,15 +2,21 @@
 import TypingMulti from "./TypingMulti.astro";
 
 const name = "Muchammad Yassir Nur Fadillah";
-const age = 18;
-const typingTexts = [
-    `A ${age}-year-old passionate student exploring technology.`,
-    "Nice to meet you! Welcome to my website!.",
-];
+const typingTexts = [`Welcome to my website!`, "Nice to meet you!"];
 ---
 
-<section class="pt-32 pb-20 px-6">
-    <div class="max-w-6xl mx-auto text-center">
+<section class="pt-32 pb-20 px-6 relative overflow-hidden">
+    <!-- Animated background blob (desktop only) -->
+    <div
+        class="hidden lg:block absolute -top-40 -right-40 w-80 h-80 bg-linear-to-br from-blue-500/20 to-violet-500/20 rounded-full blur-3xl animate-float"
+    >
+    </div>
+    <div
+        class="hidden lg:block absolute -bottom-20 -left-40 w-96 h-96 bg-linear-to-tr from-violet-500/10 to-cyan-500/10 rounded-full blur-3xl animate-float-delayed"
+    >
+    </div>
+
+    <div class="max-w-6xl mx-auto text-center relative z-10">
         <div class="animate-fadeInUp">
             <h1 class="text-5xl md:text-7xl font-bold mb-6">
                 <span
@@ -45,3 +51,33 @@ const typingTexts = [
         </div>
     </div>
 </section>
+
+<style>
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-30px);
+        }
+    }
+
+    @keyframes float-delayed {
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(30px);
+        }
+    }
+
+    .animate-float {
+        animation: float 8s ease-in-out infinite;
+    }
+
+    .animate-float-delayed {
+        animation: float-delayed 10s ease-in-out infinite 2s;
+    }
+</style>

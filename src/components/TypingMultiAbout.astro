@@ -72,42 +72,19 @@ const { texts, speed = 100, cursorVisible = true } = Astro.props;
 
             if (!typingText || texts.length === 0) return;
 
-            let currentTextIndex = 0;
+            // Clear previous text in case of re-initialization
+            typingText.textContent = "";
+
             let currentIndex = 0;
-            let isDeleting = false;
-            const currentText = texts[currentTextIndex];
+            const fullText = texts[0]; // Only use first text
 
             const typeCharacter = () => {
-                const text = texts[currentTextIndex];
-
-                if (!isDeleting) {
-                    // Typing phase
-                    if (currentIndex < text.length) {
-                        typingText.textContent += text[currentIndex];
-                        currentIndex++;
-                        setTimeout(typeCharacter, speed);
-                    } else {
-                        // Done typing, wait before deleting
-                        isDeleting = true;
-                        setTimeout(typeCharacter, 2000);
-                    }
-                } else {
-                    // Deleting phase
-                    if (currentIndex > 0) {
-                        typingText.textContent = text.substring(
-                            0,
-                            currentIndex - 1,
-                        );
-                        currentIndex--;
-                        setTimeout(typeCharacter, speed / 2);
-                    } else {
-                        // Done deleting, move to next text
-                        currentTextIndex =
-                            (currentTextIndex + 1) % texts.length;
-                        isDeleting = false;
-                        setTimeout(typeCharacter, 500);
-                    }
+                if (currentIndex < fullText.length) {
+                    typingText.textContent += fullText[currentIndex];
+                    currentIndex++;
+                    setTimeout(typeCharacter, speed);
                 }
+                // When done, simply stop - cursor keeps blinking
             };
 
             typeCharacter();
@@ -120,4 +97,7 @@ const { texts, speed = 100, cursorVisible = true } = Astro.props;
     } else {
         initializeMultiTyping();
     }
+
+    // Re-initialize after Astro view transitions
+    document.addEventListener("astro:after-swap", initializeMultiTyping);
 </script>

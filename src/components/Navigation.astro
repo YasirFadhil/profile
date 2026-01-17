@@ -1,5 +1,15 @@
 ---
 const name = "ysirnf";
+
+// Get current pathname
+const currentPath = new URL(Astro.request.url).pathname;
+
+// Helper function to check if link is active
+const isActive = (href: string) => {
+    if (href === "/" && currentPath === "/") return true;
+    if (href !== "/" && currentPath.startsWith(href)) return true;
+    return false;
+};
 ---
 
 <nav
@@ -16,22 +26,22 @@ const name = "ysirnf";
             <div class="hidden md:flex space-x-8">
                 <a
                     href="/"
-                    class="text-slate-300 hover:text-blue-400 transition-colors"
+                    class={`transition-colors ${isActive("/") ? "text-blue-400 font-semibold border-b-2 border-blue-400" : "text-slate-300 hover:text-blue-400"}`}
                     >Home</a
                 >
                 <a
                     href="/about"
-                    class="text-slate-300 hover:text-blue-400 transition-colors"
+                    class={`transition-colors ${isActive("/about") ? "text-blue-400 font-semibold border-b-2 border-blue-400" : "text-slate-300 hover:text-blue-400"}`}
                     >About</a
                 >
                 <a
                     href="/gallery"
-                    class="text-slate-300 hover:text-blue-400 transition-colors"
+                    class={`transition-colors ${isActive("/gallery") ? "text-blue-400 font-semibold border-b-2 border-blue-400" : "text-slate-300 hover:text-blue-400"}`}
                     >Gallery</a
                 >
                 <a
                     href="/projects"
-                    class="text-slate-300 hover:text-blue-400 transition-colors"
+                    class={`transition-colors ${isActive("/projects") ? "text-blue-400 font-semibold border-b-2 border-blue-400" : "text-slate-300 hover:text-blue-400"}`}
                     >Projects</a
                 >
             </div>
@@ -53,22 +63,22 @@ const name = "ysirnf";
             <div class="px-6 py-4 space-y-4">
                 <a
                     href="/"
-                    class="block text-slate-300 hover:text-blue-400 transition-colors mobile-nav-link"
+                    class={`block transition-colors mobile-nav-link ${isActive("/") ? "text-blue-400 font-semibold border-l-4 border-blue-400 pl-2" : "text-slate-300 hover:text-blue-400"}`}
                     >Home</a
                 >
                 <a
                     href="/about"
-                    class="block text-slate-300 hover:text-blue-400 transition-colors mobile-nav-link"
+                    class={`block transition-colors mobile-nav-link ${isActive("/about") ? "text-blue-400 font-semibold border-l-4 border-blue-400 pl-2" : "text-slate-300 hover:text-blue-400"}`}
                     >About</a
                 >
                 <a
                     href="/gallery"
-                    class="block text-slate-300 hover:text-blue-400 transition-colors mobile-nav-link"
+                    class={`block transition-colors mobile-nav-link ${isActive("/gallery") ? "text-blue-400 font-semibold border-l-4 border-blue-400 pl-2" : "text-slate-300 hover:text-blue-400"}`}
                     >Gallery</a
                 >
                 <a
                     href="/projects"
-                    class="block text-slate-300 hover:text-blue-400 transition-colors mobile-nav-link"
+                    class={`block transition-colors mobile-nav-link ${isActive("/projects") ? "text-blue-400 font-semibold border-l-4 border-blue-400 pl-2" : "text-slate-300 hover:text-blue-400"}`}
                     >Projects</a
                 >
             </div>

@@ -10,7 +10,7 @@ const name = "Muchammad Yassir Nur Fadillah";
 const description =
     "A passionate student with a love for learning and exploring technology.";
 const title = "ysirnf - Personal Website";
-const image = "../../public/profile.jpg";
+const image = "/public/images/profile.jpg";
 
 const personalData = {
     name: name,
@@ -22,35 +22,54 @@ const personalData = {
 
 <Layout {...personalData}>
     <Navigation />
-    <div
-        class="min-h-screen bg-linear-to-r from-slate-900 via-slate-800 to-slate-900"
-    >
+    <div class="min-h-screen gradient-bg-hero">
         <!-- Hero Section -->
         <Hero />
 
         <!-- About Section - Brief Summary -->
-        <section id="about" class="py-20 px-6">
-            <div
-                class="max-w-6xl mx-auto text-center animate-fadeInUp animate-delay-200"
-            >
-                <h2
-                    class="text-3xl md:text-4xl font-bold mb-6 bg-linear-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent"
-                >
-                    About Me
-                </h2>
-                <p
-                    class="text-slate-300 text-lg mb-8 leading-relaxed max-w-2xl mx-auto"
-                >
-                    I'm {name}, a passionate student exploring the world of
-                    technology. Learn more about my journey, passions, and
-                    skills on my dedicated About Me page.
-                </p>
-                <a
-                    href="/about"
-                    class="inline-block bg-linear-to-r from-blue-500 to-violet-500 text-white py-3 px-8 rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
-                >
-                    Learn More <i class="fas fa-arrow-right ml-2"></i>
-                </a>
+        <section id="about" class="py-20 px-6 gradient-bg-about">
+            <div class="max-w-6xl mx-auto animate-fadeInUp animate-delay-200">
+                <!-- Desktop: 2-column layout | Mobile: stacked -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Left: Image (Desktop only) -->
+                    <div class="hidden md:flex justify-center">
+                        <div class="relative">
+                            <div
+                                class="w-64 h-64 rounded-2xl overflow-hidden border-2 border-blue-400/30 shadow-xl shadow-blue-500/10"
+                            >
+                                <img
+                                    src={image}
+                                    alt="Profile"
+                                    class="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div
+                                class="absolute -bottom-4 -right-4 w-24 h-24 bg-linear-to-br from-blue-500 to-violet-500 rounded-xl opacity-20 blur-2xl"
+                            >
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Text Content -->
+                    <div class="text-center md:text-left">
+                        <h2
+                            class="text-3xl md:text-4xl font-bold mb-6 bg-linear-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent"
+                        >
+                            About Me
+                        </h2>
+                        <p class="text-slate-300 text-lg mb-8 leading-relaxed">
+                            I'm {name}, a passionate student exploring the world
+                            of technology. Learn more about my journey,
+                            passions, and skills on my dedicated About Me page.
+                        </p>
+                        <a
+                            href="/about"
+                            class="inline-block bg-linear-to-r from-blue-500 to-violet-500 text-white py-3 px-8 rounded-full font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105"
+                        >
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -66,9 +85,13 @@ const personalData = {
         </div>
 
         <!-- Skills Section -->
-        <!-- <Skills /> -->
+        <div class="gradient-bg-skills">
+            <Skills />
+        </div>
 
         <!-- Contact Section -->
-        <Contact />
+        <div class="gradient-bg-contact">
+            <Contact />
+        </div>
     </div>
 </Layout>
