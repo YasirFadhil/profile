@@ -29,6 +29,51 @@ body {
     background: transparent;
 }
 
+/* Page transition animations */
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInPage {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply fade-in animation to main page content */
+main,
+[data-astro-transition-scope] {
+    animation: fadeInPage 0.6s ease-out forwards;
+}
+
+/* View transition API for Astro */
+::view-transition-old(root) {
+    animation: fadeOutPage 0.4s ease-in forwards;
+}
+
+::view-transition-new(root) {
+    animation: fadeInPage 0.4s ease-out forwards;
+}
+
+@keyframes fadeOutPage {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
 /* Fade in up animation for elements */
 @keyframes fadeInUp {
     from {

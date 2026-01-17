@@ -63,28 +63,30 @@ const { texts, speed = 100, cursorVisible = true } = Astro.props;
 
         containers.forEach((container) => {
             const textsJson = container.getAttribute("data-texts") || "[]";
-            const texts = JSON.parse(textsJson);
-            const speed = parseInt(
+            const parsedTexts = JSON.parse(textsJson);
+            const parsedSpeed = parseInt(
                 container.getAttribute("data-speed") || "100",
             );
             const typingText = container.querySelector(".typing-multi-text");
 
-            if (!typingText || texts.length === 0) return;
+            if (!typingText || parsedTexts.length === 0) return;
+
+            // Reset text content
+            typingText.textContent = "";
 
             let currentTextIndex = 0;
             let currentIndex = 0;
             let isDeleting = false;
-            const currentText = texts[currentTextIndex];
 
             const typeCharacter = () => {
-                const text = texts[currentTextIndex];
+                const text = parsedTexts[currentTextIndex];
 
                 if (!isDeleting) {
                     // Typing phase
                     if (currentIndex < text.length) {
                         typingText.textContent += text[currentIndex];
                         currentIndex++;
-                        setTimeout(typeCharacter, speed);
+                        setTimeout(typeCharacter, parsedSpeed);
                     } else {
                         // Done typing, wait before deleting
                         isDeleting = true;
@@ -98,11 +100,11 @@ const { texts, speed = 100, cursorVisible = true } = Astro.props;
                             currentIndex - 1,
                         );
                         currentIndex--;
-                        setTimeout(typeCharacter, speed / 2);
+                        setTimeout(typeCharacter, parsedSpeed / 2);
                     } else {
                         // Done deleting, move to next text
                         currentTextIndex =
-                            (currentTextIndex + 1) % texts.length;
+                            (currentTextIndex + 1) % parsedTexts.length;
                         isDeleting = false;
                         setTimeout(typeCharacter, 500);
                     }
@@ -113,10 +115,13 @@ const { texts, speed = 100, cursorVisible = true } = Astro.props;
         });
     }
 
-    // Run when DOM is ready
+    // Initialize on page load
     if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", initializeMultiTyping);
     } else {
         initializeMultiTyping();
     }
+
+    // Re-initialize after ViewTransitions
+    document.addEventListener("astro:after-swap", initializeMultiTyping);
 </script>
