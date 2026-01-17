@@ -16,7 +16,7 @@
 //
 import Layout from "../layouts/Layout.astro";
 import Navigation from "../components/Navigation.astro";
-import TypingMulti from "../components/TypingMultiAbout.astro";
+import Typing from "../components/TypingAbout.astro";
 
 //
 // Meta & Page Info
@@ -193,7 +193,7 @@ const timeline = [
           <div class="md:col-span-2 text-center md:text-left">
             <h2 class="text-4xl md:text-5xl font-bold text-slate-100 mb-3">{name}</h2>
             <p class="text-xl text-blue-300 mb-6 font-medium">
-              <TypingMulti texts={typingTexts} speed={60} cursorVisible={true} />
+              <Typing texts={typingTexts} speed={60} cursorVisible={true} />
             </p>
             <p class="text-slate-300 text-lg leading-relaxed mb-4">
               {age} years old • Based in {location}
