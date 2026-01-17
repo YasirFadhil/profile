@@ -1,1 +1,58 @@
 @import "tailwindcss";
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Single continuous gradient background for entire page */
+html,
+body {
+    background: linear-gradient(
+        180deg,
+        #0f172a 0%,
+        #1e293b 25%,
+        #1a2847 50%,
+        #1e293b 75%,
+        #0f172a 100%
+    );
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* All gradient sections are transparent to show the main background */
+.gradient-bg-hero,
+.gradient-bg-about,
+.gradient-bg-skills,
+.gradient-bg-projects,
+.gradient-bg-contact {
+    background: transparent;
+}
+
+/* Fade in up animation for elements */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-delay-200 {
+    animation-delay: 200ms;
+}
+
+.animate-delay-400 {
+    animation-delay: 400ms;
+}
+
+.animate-delay-600 {
+    animation-delay: 600ms;
+}

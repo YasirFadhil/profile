@@ -163,7 +163,7 @@ const timeline = [
 
 <Layout title={title} {...aboutData}>
   <Navigation />
-  <div class="min-h-screen bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 pt-20">
+  <div class="min-h-screen pt-20">
     <div class="container mx-auto px-6 py-16">
       <h1
         class="text-4xl md:text-5xl font-bold mb-8 text-center bg-linear-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent"
@@ -174,11 +174,11 @@ const timeline = [
       <div class="max-w-4xl mx-auto bg-slate-800/70 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 shadow-lg">
         <div class="text-center mb-10">
           <div class="profile-photo-container relative w-40 h-40 mx-auto mb-6 cursor-pointer">
-            <div class="glow-effect absolute inset-0 bg-gradient-to-r from-blue-500 to-violet-500 rounded-full blur-lg opacity-75 animate-pulse"></div>
+            <div class="glow-effect absolute inset-0 bg-linear-to-r from-blue-500 to-violet-500 rounded-full blur-lg opacity-75 animate-pulse"></div>
             <img
               src={image}
               alt={name}
-              class="relative w-40 h-40 rounded-full border-1 border-blue-400 object-cover transition-transform duration-300"
+              class="relative w-40 h-40 rounded-full border border-blue-400 object-cover transition-transform duration-300"
             />
           </div>
           <h2 class="text-3xl font-semibold text-slate-200 mb-2">{name}</h2>
