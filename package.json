@@ -6,7 +6,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "security:audit": "npm audit",
+    "security:audit:fix": "npm audit fix",
+    "security:check": "npm audit --audit-level=moderate"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
