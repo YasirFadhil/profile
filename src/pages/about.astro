@@ -32,7 +32,7 @@ const image = "/images/profile.jpg";
 // Contact Info
 //
 const email = "yasirfadhil46@gmail.com";
-const location = "Klaten, Indonesia";
+const location = "Klaten Regency, Indonesia";
 const social = {
   github: "https://github.com/YasirFadhil",
   x: "https://twitter.com/ysirnf_",
@@ -83,7 +83,7 @@ const study = {
 //
 // Interests & Arrays
 //
-const passion = ["web development", "photography", "gaming"];
+const passion = ["web development", "Linux", "photography", "gaming"];
 
 const hobbies = [
   {
@@ -251,7 +251,7 @@ const timeline = [
                       </div>
 
                       <!-- Card -->
-                      <div class="bg-gradient-to-br from-slate-800/60 to-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 hover:border-blue-400/60 hover:from-slate-800/80 hover:to-slate-900/60 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/20">
+                      <div class="bg-linear-to-br from-slate-800/60 to-slate-900/40 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 hover:border-blue-400/60 hover:from-slate-800/80 hover:to-slate-900/60 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/20">
                         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
                           <h3 class="text-xl font-semibold text-slate-100">{item.title}</h3>
                           <span class="inline-block text-sm text-slate-400 font-medium bg-slate-700/30 px-3 py-1 rounded-full">{item.year}</span>
@@ -282,7 +282,7 @@ const timeline = [
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {
                 hobbies.map((hobby) => (
-                  <div class="group relative bg-gradient-to-br from-slate-800/50 to-slate-900/30 backdrop-blur-sm border border-slate-700/50 p-8 rounded-2xl hover:border-blue-400/60 hover:from-slate-800/70 hover:to-slate-900/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20">
+                  <div class="group relative bg-linear-to-br from-slate-800/50 to-slate-900/30 backdrop-blur-sm border border-slate-700/50 p-8 rounded-2xl hover:border-blue-400/60 hover:from-slate-800/70 hover:to-slate-900/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20">
                     <div class="mb-4 inline-flex p-4 rounded-xl bg-slate-700/30 group-hover:bg-slate-700/50 transition-colors duration-300">
                       <i class={`fas ${hobby.icon} ${hobby.color} text-3xl`} />
                     </div>
@@ -305,7 +305,7 @@ const timeline = [
             <div class="flex flex-wrap gap-3 justify-start">
               {
                 skills.map((skill) => (
-                  <span class="px-5 py-2.5 bg-gradient-to-r from-blue-500/20 to-violet-500/20 text-slate-200 text-base font-medium rounded-full border border-blue-400/30 hover:border-blue-400/60 hover:from-blue-500/30 hover:to-violet-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20">
+                  <span class="px-5 py-2.5 bg-linear-to-r from-blue-500/20 to-violet-500/20 text-slate-200 text-base font-medium rounded-full border border-blue-400/30 hover:border-blue-400/60 hover:from-blue-500/30 hover:to-violet-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20">
                     {skill}
                   </span>
                 ))
