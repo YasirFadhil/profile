@@ -12,6 +12,7 @@
     "security:check": "npm audit --audit-level=moderate"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.0"
   },

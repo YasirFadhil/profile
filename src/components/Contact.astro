@@ -1,6 +1,4 @@
 ---
-import { validateContactForm, sanitizeInput } from "../config/security";
-
 const name = "ysirnf";
 ---
 
@@ -19,16 +17,12 @@ const name = "ysirnf";
 
             <!-- Contact Form -->
             <div class="max-w-2xl mx-auto mb-12">
+                <div id="form-message" class="mb-4 hidden"></div>
                 <form
                     id="contact-form"
-                    class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8"
-                    action="https://formspree.io/f/xqajljbq"
-                    method="POST"
                     novalidate
+                    class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8"
                 >
-                    <!-- Form status messages -->
-                    <div id="form-status" class="mb-6 hidden"></div>
-
                     <div class="grid md:grid-cols-2 gap-6 mb-6">
                         <div>
                             <label
@@ -46,13 +40,10 @@ const name = "ysirnf";
                                 maxlength="100"
                                 class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-slate-200 focus:border-blue-400 focus:outline-none transition-colors"
                                 placeholder="Your Name"
-                                aria-describedby="name-error"
                             />
-                            <p
-                                id="name-error"
-                                class="text-red-400 text-xs mt-1 hidden"
-                            >
-                            </p>
+                            <span
+                                class="name-error text-red-400 text-sm mt-1 hidden"
+                            ></span>
                         </div>
                         <div>
                             <label
@@ -70,13 +61,10 @@ const name = "ysirnf";
                                 maxlength="254"
                                 class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-slate-200 focus:border-blue-400 focus:outline-none transition-colors"
                                 placeholder="your@email.com"
-                                aria-describedby="email-error"
                             />
-                            <p
-                                id="email-error"
-                                class="text-red-400 text-xs mt-1 hidden"
-                            >
-                            </p>
+                            <span
+                                class="email-error text-red-400 text-sm mt-1 hidden"
+                            ></span>
                         </div>
                     </div>
                     <div class="mb-6">
@@ -94,13 +82,10 @@ const name = "ysirnf";
                             maxlength="200"
                             class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-slate-200 focus:border-blue-400 focus:outline-none transition-colors"
                             placeholder="What's this about?"
-                            aria-describedby="subject-error"
                         />
-                        <p
-                            id="subject-error"
-                            class="text-red-400 text-xs mt-1 hidden"
-                        >
-                        </p>
+                        <span
+                            class="subject-error text-red-400 text-sm mt-1 hidden"
+                        ></span>
                     </div>
                     <div class="mb-6">
                         <label
@@ -117,12 +102,10 @@ const name = "ysirnf";
                             maxlength="5000"
                             class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-slate-200 focus:border-blue-400 focus:outline-none transition-colors resize-none"
                             placeholder="Tell me about your project or just say hi!"
-                            aria-describedby="message-error"></textarea>
-                        <p
-                            id="message-error"
-                            class="text-red-400 text-xs mt-1 hidden"
-                        >
-                        </p>
+                        ></textarea>
+                        <span
+                            class="message-error text-red-400 text-sm mt-1 hidden"
+                        ></span>
                     </div>
                     <button
                         type="submit"
@@ -132,8 +115,8 @@ const name = "ysirnf";
                         <i class="fas fa-paper-plane mr-2"></i>
                         <span id="submit-text">Send Message</span>
                     </button>
-                    <p class="text-slate-400 text-xs mt-4">
-                        🔒 Your data is secure and will never be shared
+                    <p class="text-xs text-slate-400 mt-2">
+                        ✓ All your data is secure and encrypted in transit
                     </p>
                 </form>
             </div>
@@ -204,19 +187,16 @@ const name = "ysirnf";
     </div>
 </section>
 
-<script
-    define:vars={{ RATE_LIMIT_CONFIG: { maxRequests: 5, windowMs: 3600000 } }}
->
-    // Form validation and security implementation
+<script type="module">
+    import emailjs from "@emailjs/browser";
+
+    // Initialize EmailJS - Replace with your public key from emailjs.com
+    emailjs.init("79hsF_Kh6ELkrl-Mh");
+
     const form = document.getElementById("contact-form");
     const submitBtn = document.getElementById("submit-btn");
-    const formStatus = document.getElementById("form-status");
     const submitText = document.getElementById("submit-text");
-
-    // Rate limiting
-    let formSubmissions = [];
-    const MAX_REQUESTS = 5;
-    const WINDOW_MS = 60 * 60 * 1000; // 1 hour
+    const formMessage = document.getElementById("form-message");
 
     // Validation rules
     const validationRules = {
@@ -274,57 +254,37 @@ const name = "ysirnf";
 
     // Show error message
     function showError(fieldName, message) {
-        const errorElement = document.getElementById(`${fieldName}-error`);
+        const errorEl = document.querySelector(`.${fieldName}-error`);
         const field = document.getElementById(fieldName);
-        if (errorElement) {
-            errorElement.textContent = message;
-            errorElement.classList.remove("hidden");
+        if (errorEl) {
+            errorEl.textContent = message;
+            errorEl.classList.remove("hidden");
             field.classList.add("border-red-500", "bg-red-500/10");
         }
     }
 
     // Clear error message
     function clearError(fieldName) {
-        const errorElement = document.getElementById(`${fieldName}-error`);
+        const errorEl = document.querySelector(`.${fieldName}-error`);
         const field = document.getElementById(fieldName);
-        if (errorElement) {
-            errorElement.classList.add("hidden");
+        if (errorEl) {
+            errorEl.classList.add("hidden");
             field.classList.remove("border-red-500", "bg-red-500/10");
         }
     }
 
-    // Show form status message
-    function showStatus(message, type = "error") {
-        formStatus.textContent = message;
-        formStatus.className = `p-4 rounded-lg ${
+    // Show form message
+    function showMessage(message, type = "error") {
+        formMessage.textContent = message;
+        formMessage.className = `p-4 rounded-lg ${
             type === "error"
                 ? "bg-red-500/20 text-red-400 border border-red-500/50"
                 : "bg-green-500/20 text-green-400 border border-green-500/50"
         }`;
-        formStatus.classList.remove("hidden");
+        formMessage.classList.remove("hidden");
     }
 
-    // Clear form status
-    function clearStatus() {
-        formStatus.classList.add("hidden");
-    }
-
-    // Check rate limit
-    function checkRateLimit() {
-        const now = Date.now();
-        formSubmissions = formSubmissions.filter(
-            (time) => now - time < WINDOW_MS,
-        );
-
-        if (formSubmissions.length >= MAX_REQUESTS) {
-            return false;
-        }
-
-        formSubmissions.push(now);
-        return true;
-    }
-
-    // Real-time validation on input
+    // Real-time validation
     ["name", "email", "subject", "message"].forEach((fieldName) => {
         const field = document.getElementById(fieldName);
         if (field) {
@@ -338,7 +298,6 @@ const name = "ysirnf";
             });
 
             field.addEventListener("input", () => {
-                // Clear error on input if field is valid
                 if (
                     field.value &&
                     validateField(fieldName, field.value).valid
@@ -352,13 +311,6 @@ const name = "ysirnf";
     // Form submission
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
-        clearStatus();
-
-        // Rate limit check
-        if (!checkRateLimit()) {
-            showStatus("Too many requests. Please try again later.", "error");
-            return;
-        }
 
         // Validate all fields
         const formData = {
@@ -378,20 +330,41 @@ const name = "ysirnf";
         }
 
         if (!isValid) {
-            showStatus("Please fix the errors above", "error");
+            showMessage("Please fix the errors above", "error");
             return;
         }
 
-        // Disable submit button and show loading state
+        // Disable submit button
         submitBtn.disabled = true;
         submitText.textContent = "Sending...";
 
-        // Submit form after validation
         try {
-            // The form will submit to FormSpree via standard form submission
-            form.submit();
+            // Send email via EmailJS
+            await emailjs.send(
+                "service_99rl0gg", // Replace with your Service ID
+                "template_nr4cuuh", // Replace with your Template ID
+                {
+                    from_name: formData.name,
+                    from_email: formData.email,
+                    subject: formData.subject,
+                    message: formData.message,
+                    to_email: "YOUR_EMAIL@example.com", // Replace with your email
+                },
+            );
+
+            showMessage(
+                "✓ Thank you! Your message has been sent successfully.",
+                "success",
+            );
+            form.reset();
+            submitText.textContent = "Send Message";
+            submitBtn.disabled = false;
         } catch (error) {
-            showStatus("An error occurred. Please try again.", "error");
+            console.error("Email send error:", error);
+            showMessage(
+                "Failed to send message. Please check your connection.",
+                "error",
+            );
             submitBtn.disabled = false;
             submitText.textContent = "Send Message";
         }
