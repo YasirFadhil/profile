@@ -1,4 +1,10 @@
 ---
+const email = "yasirfadhil46@gmail.com";
+const whatsapp = "https://wa.me/6287712336358";
+const instagram = "https://instagram.com/ysirnf_";
+const tiktok = "https://www.tiktok.com/@ysirnf_";
+const xProfile = "https://x.com/ysirnf_";
+const github = "https://github.com/YasirFadhil";
 const name = "ysirnf";
 ---
 
@@ -10,363 +16,140 @@ const name = "ysirnf";
             >
                 Let's Connect
             </h2>
-            <p class="text-slate-300 text-lg mb-12 max-w-2xl mx-auto">
-                I'm always excited to collaborate on new projects or just have a
-                chat about technology
+
+            <p class="text-slate-300 text-lg mb-8 max-w-2xl mx-auto">
+                I'm always open to collaborating on projects, answering
+                questions, or just having a friendly chat about technology. Pick
+                whichever way works best for you — email, social, or a quick
+                message on WhatsApp.
             </p>
 
-            <!-- Contact Form -->
-            <div class="max-w-2xl mx-auto mb-12">
-                <div id="form-message" class="mb-4 hidden"></div>
-                <form
-                    id="contact-form"
-                    novalidate
-                    class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8"
+            <div class="max-w-2xl mx-auto mb-10 grid sm:grid-cols-2 gap-6">
+                <div
+                    class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 text-left"
                 >
-                    <div class="grid md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label
-                                for="name"
-                                class="block text-slate-300 text-sm font-medium mb-2"
-                                >Name <span class="text-red-400">*</span></label
-                            >
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                required
-                                autocomplete="name"
-                                minlength="2"
-                                maxlength="100"
-                                class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-slate-200 focus:border-blue-400 focus:outline-none transition-colors"
-                                placeholder="Your Name"
-                            />
-                            <span
-                                class="name-error text-red-400 text-sm mt-1 hidden"
-                            ></span>
-                        </div>
-                        <div>
-                            <label
-                                for="email"
-                                class="block text-slate-300 text-sm font-medium mb-2"
-                                >Email <span class="text-red-400">*</span
-                                ></label
-                            >
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                required
-                                autocomplete="email"
-                                maxlength="254"
-                                class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-slate-200 focus:border-blue-400 focus:outline-none transition-colors"
-                                placeholder="your@email.com"
-                            />
-                            <span
-                                class="email-error text-red-400 text-sm mt-1 hidden"
-                            ></span>
-                        </div>
-                    </div>
-                    <div class="mb-6">
-                        <label
-                            for="subject"
-                            class="block text-slate-300 text-sm font-medium mb-2"
-                            >Subject <span class="text-red-400">*</span></label
-                        >
-                        <input
-                            type="text"
-                            id="subject"
-                            name="subject"
-                            required
-                            minlength="3"
-                            maxlength="200"
-                            class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-slate-200 focus:border-blue-400 focus:outline-none transition-colors"
-                            placeholder="What's this about?"
-                        />
-                        <span
-                            class="subject-error text-red-400 text-sm mt-1 hidden"
-                        ></span>
-                    </div>
-                    <div class="mb-6">
-                        <label
-                            for="message"
-                            class="block text-slate-300 text-sm font-medium mb-2"
-                            >Message <span class="text-red-400">*</span></label
-                        >
-                        <textarea
-                            id="message"
-                            name="message"
-                            rows="4"
-                            required
-                            minlength="10"
-                            maxlength="5000"
-                            class="w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg text-slate-200 focus:border-blue-400 focus:outline-none transition-colors resize-none"
-                            placeholder="Tell me about your project or just say hi!"
-                        ></textarea>
-                        <span
-                            class="message-error text-red-400 text-sm mt-1 hidden"
-                        ></span>
-                    </div>
-                    <button
-                        type="submit"
-                        id="submit-btn"
-                        class="w-full bg-linear-to-r from-blue-500 to-violet-500 text-white py-3 rounded-lg font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                        <i class="fas fa-paper-plane mr-2"></i>
-                        <span id="submit-text">Send Message</span>
-                    </button>
-                    <p class="text-xs text-slate-400 mt-2">
-                        ✓ All your data is secure and encrypted in transit
+                    <h3 class="text-xl font-semibold text-slate-100 mb-2">
+                        Email
+                    </h3>
+                    <p class="text-slate-300 mb-4">
+                        Send me a message and I'll reply as soon as I can.
                     </p>
-                </form>
+                    <a
+                        href={`mailto:${email}`}
+                        class="inline-block bg-linear-to-r from-blue-500 to-violet-500 text-white py-3 px-5 rounded-lg font-medium hover:shadow-lg hover:shadow-blue-500/25 transition-all duration-300"
+                    >
+                        Mail Me
+                    </a>
+                </div>
+
+                <div
+                    class="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 text-left"
+                >
+                    <h3 class="text-xl font-semibold text-slate-100 mb-2">
+                        Quick Message
+                    </h3>
+                    <p class="text-slate-300 mb-4">
+                        Want a faster reply or prefer chat apps? Use WhatsApp
+                        for a quick message.
+                    </p>
+                    <a
+                        href={whatsapp}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-block bg-green-500 text-white py-3 px-5 rounded-lg font-medium hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300"
+                    >
+                        Message on WhatsApp
+                    </a>
+                </div>
             </div>
 
-            <!-- Social Media Links -->
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-                <a
-                    href="https://instagram.com/ysirnf_"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-pink-400/50 transition-all duration-300 hover:scale-105"
-                >
-                    <div class="text-2xl mb-2">
-                        <i class="fab fa-instagram text-pink-400"></i>
-                    </div>
-                    <span
-                        class="text-slate-300 group-hover:text-pink-400 transition-colors"
-                        >Instagram</span
+            <div class="max-w-2xl mx-auto mb-6">
+                <h4 class="text-lg text-slate-200 font-medium mb-4">
+                    Find me on
+                </h4>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                    <a
+                        href={instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-pink-400/50 transition-all duration-300 hover:scale-105"
+                        aria-label="Instagram"
                     >
-                </a>
+                        <div class="text-2xl mb-2">
+                            <i
+                                class="fab fa-instagram text-pink-400"
+                                aria-hidden="true"></i>
+                        </div>
+                        <span
+                            class="text-slate-300 group-hover:text-pink-400 transition-colors"
+                            >Instagram</span
+                        >
+                    </a>
 
-                <a
-                    href="https://x.com/ysirnf_"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-blue-400/50 transition-all duration-300 hover:scale-105"
-                >
-                    <div class="text-2xl mb-2">
-                        <i class="fab fa-x-twitter text-blue-400"></i>
-                    </div>
-                    <span
-                        class="text-slate-300 group-hover:text-blue-400 transition-colors"
-                        >X</span
+                    <a
+                        href={xProfile}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-blue-400/50 transition-all duration-300 hover:scale-105"
+                        aria-label="X"
                     >
-                </a>
+                        <div class="text-2xl mb-2">
+                            <i
+                                class="fab fa-x-twitter text-blue-400"
+                                aria-hidden="true"></i>
+                        </div>
+                        <span
+                            class="text-slate-300 group-hover:text-blue-400 transition-colors"
+                            >X</span
+                        >
+                    </a>
 
-                <a
-                    href="https://wa.me/6287712336358"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-green-500/50 transition-all duration-300 hover:scale-105"
-                >
-                    <div class="text-2xl mb-2">
-                        <i class="fab fa-whatsapp text-green-500"></i>
-                    </div>
-                    <span
-                        class="text-slate-300 group-hover:text-green-600 transition-colors"
-                        >WhatsApp</span
+                    <a
+                        href={tiktok}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-green-500/50 transition-all duration-300 hover:scale-105"
+                        aria-label="TikTok"
                     >
-                </a>
+                        <div class="text-2xl mb-2">
+                            <i
+                                class="fab fa-tiktok text-pink-200"
+                                aria-hidden="true"></i>
+                        </div>
+                        <span
+                            class="text-slate-300 group-hover:text-pink-200 transition-colors"
+                            >TikTok</span
+                        >
+                    </a>
 
-                <a
-                    href="https://github.com/YasirFadhil"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-slate-50/50 transition-all duration-300 hover:scale-105"
-                >
-                    <div class="text-2xl mb-2">
-                        <i class="fab fa-github text-slate-50"></i>
-                    </div>
-                    <span
-                        class="text-slate-300 group-hover:text-slate-400 transition-colors"
-                        >GitHub</span
+                    <a
+                        href={github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="group bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 p-6 rounded-xl hover:border-slate-50/50 transition-all duration-300 hover:scale-105"
+                        aria-label="GitHub"
                     >
-                </a>
+                        <div class="text-2xl mb-2">
+                            <i
+                                class="fab fa-github text-slate-50"
+                                aria-hidden="true"></i>
+                        </div>
+                        <span
+                            class="text-slate-300 group-hover:text-slate-400 transition-colors"
+                            >GitHub</span
+                        >
+                    </a>
+                </div>
             </div>
+
+            <!-- <p class="text-xs text-slate-400 mt-4">
+                If you'd rather not use links, you can copy this email address:
+                <code class="ml-1 text-slate-200">{email}</code>
+            </p> -->
+
+            <p class="text-xs text-slate-400 mt-2">
+                Thank you — looking forward to hearing from you!
+            </p>
         </div>
     </div>
 </section>
-
-<script type="module">
-    import emailjs from "@emailjs/browser";
-
-    // Initialize EmailJS - Replace with your public key from emailjs.com
-    emailjs.init("79hsF_Kh6ELkrl-Mh");
-
-    const form = document.getElementById("contact-form");
-    const submitBtn = document.getElementById("submit-btn");
-    const submitText = document.getElementById("submit-text");
-    const formMessage = document.getElementById("form-message");
-
-    // Validation rules
-    const validationRules = {
-        name: {
-            minLength: 2,
-            maxLength: 100,
-            pattern: /^[a-zA-Z\s'-]+$/,
-            message:
-                "Name should contain only letters, spaces, hyphens, and apostrophes",
-        },
-        email: {
-            minLength: 5,
-            maxLength: 254,
-            pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-            message: "Please enter a valid email address",
-        },
-        subject: {
-            minLength: 3,
-            maxLength: 200,
-            pattern: /^[a-zA-Z0-9\s.,!?'-]+$/,
-            message: "Subject contains invalid characters",
-        },
-        message: {
-            minLength: 10,
-            maxLength: 5000,
-            message: "Message must be between 10 and 5000 characters",
-        },
-    };
-
-    // Sanitize input
-    function sanitizeInput(input) {
-        return input.replace(/[<>]/g, "").trim().slice(0, 5000);
-    }
-
-    // Validate individual field
-    function validateField(fieldName, value) {
-        const rule = validationRules[fieldName];
-        if (!rule) return { valid: true };
-
-        const sanitized = sanitizeInput(value);
-
-        if (
-            sanitized.length < rule.minLength ||
-            sanitized.length > rule.maxLength
-        ) {
-            return { valid: false, message: rule.message };
-        }
-
-        if (!rule.pattern.test(sanitized)) {
-            return { valid: false, message: rule.message };
-        }
-
-        return { valid: true };
-    }
-
-    // Show error message
-    function showError(fieldName, message) {
-        const errorEl = document.querySelector(`.${fieldName}-error`);
-        const field = document.getElementById(fieldName);
-        if (errorEl) {
-            errorEl.textContent = message;
-            errorEl.classList.remove("hidden");
-            field.classList.add("border-red-500", "bg-red-500/10");
-        }
-    }
-
-    // Clear error message
-    function clearError(fieldName) {
-        const errorEl = document.querySelector(`.${fieldName}-error`);
-        const field = document.getElementById(fieldName);
-        if (errorEl) {
-            errorEl.classList.add("hidden");
-            field.classList.remove("border-red-500", "bg-red-500/10");
-        }
-    }
-
-    // Show form message
-    function showMessage(message, type = "error") {
-        formMessage.textContent = message;
-        formMessage.className = `p-4 rounded-lg ${
-            type === "error"
-                ? "bg-red-500/20 text-red-400 border border-red-500/50"
-                : "bg-green-500/20 text-green-400 border border-green-500/50"
-        }`;
-        formMessage.classList.remove("hidden");
-    }
-
-    // Real-time validation
-    ["name", "email", "subject", "message"].forEach((fieldName) => {
-        const field = document.getElementById(fieldName);
-        if (field) {
-            field.addEventListener("blur", () => {
-                const validation = validateField(fieldName, field.value);
-                if (validation.valid) {
-                    clearError(fieldName);
-                } else {
-                    showError(fieldName, validation.message);
-                }
-            });
-
-            field.addEventListener("input", () => {
-                if (
-                    field.value &&
-                    validateField(fieldName, field.value).valid
-                ) {
-                    clearError(fieldName);
-                }
-            });
-        }
-    });
-
-    // Form submission
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        // Validate all fields
-        const formData = {
-            name: document.getElementById("name").value,
-            email: document.getElementById("email").value,
-            subject: document.getElementById("subject").value,
-            message: document.getElementById("message").value,
-        };
-
-        let isValid = true;
-        for (const [fieldName, value] of Object.entries(formData)) {
-            const validation = validateField(fieldName, value);
-            if (!validation.valid) {
-                showError(fieldName, validation.message);
-                isValid = false;
-            }
-        }
-
-        if (!isValid) {
-            showMessage("Please fix the errors above", "error");
-            return;
-        }
-
-        // Disable submit button
-        submitBtn.disabled = true;
-        submitText.textContent = "Sending...";
-
-        try {
-            // Send email via EmailJS
-            await emailjs.send(
-                "service_99rl0gg", // Replace with your Service ID
-                "template_nr4cuuh", // Replace with your Template ID
-                {
-                    from_name: formData.name,
-                    from_email: formData.email,
-                    subject: formData.subject,
-                    message: formData.message,
-                    to_email: "YOUR_EMAIL@example.com", // Replace with your email
-                },
-            );
-
-            showMessage(
-                "✓ Thank you! Your message has been sent successfully.",
-                "success",
-            );
-            form.reset();
-            submitText.textContent = "Send Message";
-            submitBtn.disabled = false;
-        } catch (error) {
-            console.error("Email send error:", error);
-            showMessage(
-                "Failed to send message. Please check your connection.",
-                "error",
-            );
-            submitBtn.disabled = false;
-            submitText.textContent = "Send Message";
-        }
-    });
-</script>
